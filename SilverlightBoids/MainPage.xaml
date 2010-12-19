@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="SilverlightBoids.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+             Width="Auto" Height="Auto"
+    d:DesignHeight="500" d:DesignWidth="500" xmlns:my="clr-namespace:SilverlightBoids">
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="9*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+    <Canvas Grid.Row="0" Name="LayoutRoot" Background="Black">
+    </Canvas>
+        <my:MenuControl Grid.Row="1" x:Name="menuControl1" />
+    </Grid>
+</UserControl>

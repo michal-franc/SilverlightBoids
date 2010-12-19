@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="SilverlightBoids.MenuControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+             Height="Auto"
+             Width="Auto"
+    d:DesignHeight="100" d:DesignWidth="1000">
+    
+    <Grid x:Name="LayoutRoot" Background="Black">
+        <Button Content="AddRandomBoid" Height="24" HorizontalAlignment="Left" Name="btnAddBoidRandom" VerticalAlignment="Top" Width="98" Click="btnAddBoidRandom_Click" Foreground="#FFCE1A1A" FontWeight="Black" FontStretch="Normal" FontSize="9">
+            <Button.BorderBrush>
+                <LinearGradientBrush>
+                    <GradientStop Color="#FFA3AEB9" Offset="0" />
+                    <GradientStop Color="#FF8399A9" Offset="0.375" />
+                    <GradientStop Color="#FF718597" Offset="0.375" />
+                    <GradientStop Color="#FF1A7FCB" Offset="1" />
+                </LinearGradientBrush>
+            </Button.BorderBrush>
+        </Button>
+        <Button Content="Seek" FontSize="9" FontStretch="Normal" FontWeight="Black" Foreground="#FFCE1A1A" Height="24" HorizontalAlignment="Left" Margin="230,0,0,0" Name="btnSeek" VerticalAlignment="Top" Width="98" Click="btnSeek_Click">
+            <Button.BorderBrush>
+                <LinearGradientBrush>
+                    <GradientStop Color="#FFA3AEB9" Offset="0" />
+                    <GradientStop Color="#FF8399A9" Offset="0.375" />
+                    <GradientStop Color="#FF718597" Offset="0.375" />
+                    <GradientStop Color="#FF1A7FCB" Offset="1" />
+                </LinearGradientBrush>
+            </Button.BorderBrush>
+        </Button>
+        <TextBlock Height="23" HorizontalAlignment="Left" Foreground="Yellow" Margin="894,1,0,0" Name="txtSelectedOption" Text="TextBlock" VerticalAlignment="Top" Width="106" />
+        <Button Content="Flee" FontSize="9" FontStretch="Normal" FontWeight="Black" Foreground="#FFCE1A1A" Height="24" HorizontalAlignment="Left" Margin="230,22,0,0" Name="btnFlee" VerticalAlignment="Top" Width="98" Click="btnFlee_Click">
+            <Button.BorderBrush>
+                <LinearGradientBrush>
+                    <GradientStop Color="#FFA3AEB9" Offset="0" />
+                    <GradientStop Color="#FF8399A9" Offset="0.375" />
+                    <GradientStop Color="#FF718597" Offset="0.375" />
+                    <GradientStop Color="#FF1A7FCB" Offset="1" />
+                </LinearGradientBrush>
+            </Button.BorderBrush>
+        </Button>
+        <Button Content="AddBoid" FontSize="9" FontStretch="Normal" FontWeight="Black" Foreground="#FFCE1A1A" Height="24" HorizontalAlignment="Left" Margin="0,22,0,0" Name="btnAddBoid" VerticalAlignment="Top" Width="98" Click="btnAddBoid_Click">
+            <Button.BorderBrush>
+                <LinearGradientBrush>
+                    <GradientStop Color="#FFA3AEB9" Offset="0" />
+                    <GradientStop Color="#FF8399A9" Offset="0.375" />
+                    <GradientStop Color="#FF718597" Offset="0.375" />
+                    <GradientStop Color="#FF1A7FCB" Offset="1" />
+                </LinearGradientBrush>
+            </Button.BorderBrush>
+        </Button>
+    </Grid>
+</UserControl>

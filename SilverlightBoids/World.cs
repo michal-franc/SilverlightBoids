@@ -14,25 +14,43 @@ using System.Linq;
 
 namespace SilverlightBoids
 {
+
+    public enum WorldStatus
+    {
+        None,
+        GlobalSeek,
+        GlobalFlee,
+        GlobalFollowPath,
+        AddBoid
+
+    }
+
     public class World
     {
+        #region Fields
         private Panel _map;
         public IBoidAction GlobalAction { get; set; }
         private IList<BoidControl> _boidList = new List<BoidControl>();
 
-        public  IList<BoidControl> BoidList 
-        { 
+        public WorldStatus WorldStatus { get; set; }
+
+        public IList<BoidControl> BoidList
+        {
             get
             {
                 return _boidList;
             }
-        }
+        } 
+        #endregion
 
+        #region CTOR
         public World(Panel map)
         {
+            WorldStatus = WorldStatus.None;
             _map = map;
 
-        }
+        } 
+        #endregion
 
         #region Public Methods
         public void AddBoid(Point p)

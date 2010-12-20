@@ -15,7 +15,6 @@ namespace SilverlightBoids
 {
     public partial class MenuControl : UserControl
     {
-        private int status = 0;
         private IList<Point> _globalPath;
         public World World { get; set; }
         public MenuControl()
@@ -32,15 +31,15 @@ namespace SilverlightBoids
         {
             txtSelectedOption.Text = "Add Boid";
             Grid grid = this.Parent as Grid;
-            if (status == 0)
+            if (World.WorldStatus != WorldStatus.AddBoid)
             {
                 grid.MouseLeftButtonDown += new MouseButtonEventHandler(grid_MouseLeftButtonDown);
-                status = 1;
+                World.WorldStatus = WorldStatus.AddBoid;
             }
             else
             {
                 grid.MouseLeftButtonDown -= new MouseButtonEventHandler(grid_MouseLeftButtonDown);
-                status = 0;
+                World.WorldStatus = WorldStatus.None;
             }
         }
 
@@ -48,29 +47,31 @@ namespace SilverlightBoids
         {
             txtSelectedOption.Text = "Flee";
             World.GlobalAction = new BoidActionFlee();
+            World.WorldStatus = WorldStatus.GlobalFlee;
         }
 
         private void btnSeek_Click(object sender, RoutedEventArgs e)
         {
             txtSelectedOption.Text = "Seek";
             World.GlobalAction = new BoidActionSeek();
+            World.WorldStatus = WorldStatus.GlobalSeek;
         }
 
         private void btnFollowPath_Click(object sender, RoutedEventArgs e)
         {
             txtSelectedOption.Text = "Follow Path";
             Grid grid = this.Parent as Grid;
-            if (status == 0)
+            if (World.WorldStatus != WorldStatus.GlobalFollowPath)
             {
                 _globalPath = new List<Point>();
                 grid.MouseLeftButtonDown +=new MouseButtonEventHandler(grid1_MouseLeftButtonDown);
-                status = 1;
+                World.WorldStatus = WorldStatus.GlobalFollowPath;
             }
             else
             {
                 grid.MouseLeftButtonDown -= new MouseButtonEventHandler(grid1_MouseLeftButtonDown);
                 World.GlobalAction = new BoidActionFollowPath(_globalPath);
-                status = 0;
+                World.WorldStatus = WorldStatus.None;
             }
         }
 

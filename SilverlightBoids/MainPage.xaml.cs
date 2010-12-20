@@ -18,8 +18,8 @@ namespace SilverlightBoids
     {
         private World _world;
         private DispatcherTimer _timer;
-        private Point mousePosition = new Point(0,0);
-        Ellipse fleeEllipse = new Ellipse();
+        private Point _mousePosition = new Point(0,0);
+        private Ellipse _fleeEllipse = new Ellipse();
 
         public MainPage()
         {
@@ -28,9 +28,9 @@ namespace SilverlightBoids
             _world = new World(LayoutRoot);
             menuControl1.World = _world;
 
-            fleeEllipse.Stroke = new SolidColorBrush(Color.FromArgb(255, 0, 255, 255));
-            fleeEllipse.Width = 50;
-            fleeEllipse.Height = 50;
+            _fleeEllipse.Stroke = new SolidColorBrush(Color.FromArgb(255, 0, 255, 255));
+            _fleeEllipse.Width = 50;
+            _fleeEllipse.Height = 50;
 
 
             _timer = new DispatcherTimer();
@@ -43,20 +43,26 @@ namespace SilverlightBoids
 
         void MainPage_MouseMove(object sender, MouseEventArgs e)
         {
-            mousePosition = e.GetPosition(this);
+            _mousePosition = e.GetPosition(this);
         }
 
         public void TimerCallback(object sender, EventArgs e)
         {
-            _world.Go(mousePosition);
-            if (_world.GlobalAction is BoidActionFlee)
-            {
-                fleeEllipse.SetValue(Canvas.LeftProperty, (double)mousePosition.X-25);
-                fleeEllipse.SetValue(Canvas.TopProperty, (double)mousePosition.Y-25);
+            _world.Go(_mousePosition);
 
-                if (!LayoutRoot.Children.Contains(fleeEllipse))
+            DrawFleeEllipse();
+        }
+
+        private void DrawFleeEllipse()
+        {
+            if (_world.WorldStatus == WorldStatus.GlobalFlee)
+            {
+                _fleeEllipse.SetValue(Canvas.LeftProperty, (double)_mousePosition.X-25);
+                _fleeEllipse.SetValue(Canvas.TopProperty, (double)_mousePosition.Y-25);
+
+                if (!LayoutRoot.Children.Contains(_fleeEllipse))
                 {
-                    LayoutRoot.Children.Add(fleeEllipse);
+                    LayoutRoot.Children.Add(_fleeEllipse);
                 }
             }
         }

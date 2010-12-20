@@ -55,11 +55,14 @@ namespace SilverlightBoids
 
         public void Go(IBoidAction action,Vector2 dest)
         {
-            _steerForce = action.DoAction(dest, _position, _velocity,_maxSpeed);
-            _steerForce = Vector2.Truncate(_steerForce, _maxForce);
-            _acceleration = _steerForce / _mass;
-            _velocity = Vector2.Truncate(_velocity + _acceleration, _maxSpeed);
-            Position = Vector2.Add(_velocity, Position);
+            if (action != null)
+            {
+                _steerForce = action.DoAction(dest, _position, _velocity, _maxSpeed);
+                _steerForce = Vector2.Truncate(_steerForce, _maxForce);
+                _acceleration = _steerForce / _mass;
+                _velocity = Vector2.Truncate(_velocity + _acceleration, _maxSpeed);
+                Position = Vector2.Add(_velocity, Position);
+            }
         }
     }
 }

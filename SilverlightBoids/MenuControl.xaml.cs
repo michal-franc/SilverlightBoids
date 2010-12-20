@@ -15,6 +15,7 @@ namespace SilverlightBoids
 {
     public partial class MenuControl : UserControl
     {
+        private int status = 0;
         public World World { get; set; }
         public MenuControl()
         {
@@ -29,7 +30,17 @@ namespace SilverlightBoids
         private void btnAddBoid_Click(object sender, RoutedEventArgs e)
         {
             txtSelectedOption.Text = "Add Boid";
-            //this.Parent.
+            Grid grid = this.Parent as Grid;
+            if (status == 0)
+            {
+                grid.MouseLeftButtonDown += new MouseButtonEventHandler(grid_MouseLeftButtonDown);
+                status = 1;
+            }
+            else
+            {
+                grid.MouseLeftButtonDown -= new MouseButtonEventHandler(grid_MouseLeftButtonDown);
+                status = 0;
+            }
         }
 
         private void btnFlee_Click(object sender, RoutedEventArgs e)
@@ -42,6 +53,17 @@ namespace SilverlightBoids
         {
             txtSelectedOption.Text = "Seek";
             World.GlobalAction = new BoidActionSeek();
+        }
+
+        private void btnFollowPath_Click(object sender, RoutedEventArgs e)
+        {
+            txtSelectedOption.Text = "Follow Path";
+        }
+
+        void grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            UIElement element = sender as UIElement;
+            World.AddBoidXY(e.GetPosition(element));
         }
     }
 }

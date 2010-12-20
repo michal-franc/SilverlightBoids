@@ -36,7 +36,13 @@ namespace SilverlightBoids
 
         public void AddBoidXY(Point p)
         {
-            BoidControl Boid = new BoidControl(new Vector2(p),_boidList.Last().ID+1);
+            int Id = 1;
+            if (_boidList.Count > 0)
+            {
+                Id = _boidList.Last().ID + 1;
+            }
+
+            BoidControl Boid = new BoidControl(new Vector2(p), Id);
             BoidList.Add(Boid);
             _map.Children.Add(Boid);
 

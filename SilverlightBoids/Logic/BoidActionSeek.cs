@@ -18,8 +18,8 @@ namespace SilverlightBoids.Logic
 
         public Vector2 DoAction(Vector2 dest, Vector2 location,Vector2 velocity,int maxSpeed)
         {
-            Vector2 desired_V = Vector2.Normalize(Vector2.Subtract(dest, location)) * maxSpeed;
-            return Vector2.Subtract(desired_V, velocity);
+            Vector2 newVector = Vector2.Normalize(Vector2.Subtract(dest, location)) * maxSpeed;
+            return Vector2.Subtract(newVector, velocity);
         }
 
         #endregion

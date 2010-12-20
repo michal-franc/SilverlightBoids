@@ -25,7 +25,7 @@ namespace SilverlightBoids
 
         private void btnAddBoidRandom_Click(object sender, RoutedEventArgs e)
         {
-            World.AddBoidRandom();
+            World.AddBoid();
         }
 
         private void btnAddBoid_Click(object sender, RoutedEventArgs e)
@@ -77,7 +77,7 @@ namespace SilverlightBoids
         void grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             UIElement element = sender as UIElement;
-            World.AddBoidXY(e.GetPosition(element));
+            World.AddBoid(e.GetPosition(element));
         }
 
         void grid1_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

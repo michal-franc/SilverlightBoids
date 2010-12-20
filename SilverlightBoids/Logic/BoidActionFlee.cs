@@ -24,8 +24,8 @@ namespace SilverlightBoids.Logic
             }
             else
             {
-                Vector2 desired_V = Vector2.Normalize(Vector2.Subtract(location, dest)) * maxSpeed;
-                return Vector2.Subtract(desired_V, velocity);
+                Vector2 newVector = Vector2.Normalize(Vector2.Subtract(location, dest)) * maxSpeed;
+                return Vector2.Subtract(newVector, velocity);
             }
         }
 

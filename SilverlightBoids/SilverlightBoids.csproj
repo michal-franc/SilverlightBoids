@@ -76,6 +76,7 @@
       <DependentUpon>BoidControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Logic\BoidActionFlee.cs" />
+    <Compile Include="Logic\BoidActionFollowPath.cs" />
     <Compile Include="Logic\BoidActionSeek.cs" />
     <Compile Include="Logic\BoidActionSimple.cs" />
     <Compile Include="Logic\IBoidAction.cs" />

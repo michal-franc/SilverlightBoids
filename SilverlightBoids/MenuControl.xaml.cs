@@ -58,6 +58,7 @@ namespace SilverlightBoids
         private void btnFollowPath_Click(object sender, RoutedEventArgs e)
         {
             txtSelectedOption.Text = "Follow Path";
+            World.GlobalAction = new BoidActionFollowPath(new List<Point>() { new Point(10, 10), new Point(100, 100), new Point(100, 200) });
         }
 
         void grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

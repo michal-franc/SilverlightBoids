@@ -46,14 +46,14 @@ namespace SilverlightBoids
         private void btnFlee_Click(object sender, RoutedEventArgs e)
         {
             txtSelectedOption.Text = "Flee";
-            World.GlobalAction = new BoidActionFlee();
+            World.SetGlobalAction(WorldStatus.GlobalFlee);
             World.WorldStatus = WorldStatus.GlobalFlee;
         }
 
         private void btnSeek_Click(object sender, RoutedEventArgs e)
         {
             txtSelectedOption.Text = "Seek";
-            World.GlobalAction = new BoidActionSeek();
+            World.SetGlobalAction(WorldStatus.GlobalSeek);
             World.WorldStatus = WorldStatus.GlobalSeek;
         }
 
@@ -70,7 +70,8 @@ namespace SilverlightBoids
             else
             {
                 grid.MouseLeftButtonDown -= new MouseButtonEventHandler(grid1_MouseLeftButtonDown);
-                World.GlobalAction = new BoidActionFollowPath(_globalPath);
+                World.GlobalPath = _globalPath;
+                World.SetGlobalAction(WorldStatus.GlobalFollowPath);
                 World.WorldStatus = WorldStatus.None;
             }
         }
@@ -91,7 +92,7 @@ namespace SilverlightBoids
                 line.Y2 = e.GetPosition(element).Y;
                 line.X1 = _globalPath.Last().X;
                 line.Y1 = _globalPath.Last().Y;
-                line.StrokeThickness = 4;
+                line.StrokeThickness = 1;
                 line.Stroke = new SolidColorBrush(Color.FromArgb(255,0,255,255));
 
                 element.Children.Add(line);

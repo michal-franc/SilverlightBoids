@@ -29,7 +29,6 @@ namespace SilverlightBoids
     {
         #region Fields
         private Panel _map;
-        public IBoidAction GlobalAction { get; set; }
         private IList<BoidControl> _boidList = new List<BoidControl>();
 
         public WorldStatus WorldStatus { get; set; }
@@ -40,7 +39,11 @@ namespace SilverlightBoids
             {
                 return _boidList;
             }
-        } 
+        }
+
+
+
+        public IList<Point> GlobalPath { get; set; }
         #endregion
 
         #region CTOR
@@ -67,11 +70,26 @@ namespace SilverlightBoids
         }
 
 
+        public  void SetGlobalAction(WorldStatus status)
+        {
+            foreach(BoidControl boid in this._boidList)
+            {
+                if(status == SilverlightBoids.WorldStatus.GlobalFollowPath)
+                     boid.Action = new BoidActionFollowPath(GlobalPath);
+                else if(status == SilverlightBoids.WorldStatus.GlobalFlee)
+                    boid.Action = new BoidActionFlee();
+                else if (status == SilverlightBoids.WorldStatus.GlobalSeek)
+                    boid.Action = new BoidActionSeek();
+
+            }
+        }
+
+
         public void Go(Point param)
         {
             foreach (BoidControl boid in _boidList)
             {
-                boid.Go(GlobalAction, new Vector2(param));
+                boid.Go(new Vector2(param));
             }
         } 
         #endregion

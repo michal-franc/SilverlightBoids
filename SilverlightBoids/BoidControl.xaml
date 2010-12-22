@@ -7,6 +7,7 @@
     d:DesignHeight="20" d:DesignWidth="20">
     
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow"></Ellipse>
+        <Ellipse Width="5" Height="5" Fill="Red" Stroke="Yellow"></Ellipse>
+        <!--<Image Width="10"  Height="10" Source="../Images/ant.jpg" Canvas.ZIndex="2"></Image>-->
     </Grid>
 </UserControl>

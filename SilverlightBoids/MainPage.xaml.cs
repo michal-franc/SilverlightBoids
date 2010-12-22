@@ -39,6 +39,11 @@ namespace SilverlightBoids
             _timer.Start();
 
             this.MouseMove += new MouseEventHandler(MainPage_MouseMove);
+
+            for (int i = 0; i < 200; i++)
+            {
+                _world.AddBoid();
+            }
         }
 
         void MainPage_MouseMove(object sender, MouseEventArgs e)

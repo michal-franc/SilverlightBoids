@@ -26,6 +26,8 @@ namespace SilverlightBoids
         private int _maxSpeed = 1;
         private Vector2 _steerForce;
 
+        public IBoidAction Action { get; set; }
+
 
         public Vector2 Position
         {
@@ -53,11 +55,11 @@ namespace SilverlightBoids
             InitializeComponent();
         }
 
-        public void Go(IBoidAction action,Vector2 dest)
+        public void Go(Vector2 dest)
         {
-            if (action != null)
+            if (this.Action != null)
             {
-                _steerForce = action.DoAction(dest, _position, _velocity, _maxSpeed);
+                _steerForce = this.Action.DoAction(dest, _position, _velocity, _maxSpeed);
                 _steerForce = Vector2.Truncate(_steerForce, _maxForce);
                 _acceleration = _steerForce / _mass;
                 _velocity = Vector2.Truncate(_velocity + _acceleration, _maxSpeed);

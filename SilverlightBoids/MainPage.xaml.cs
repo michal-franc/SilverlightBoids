@@ -28,6 +28,7 @@ namespace SilverlightBoids
             _world = new World(LayoutRoot);
             menuControl1.World = _world;
 
+
             _fleeEllipse.Stroke = new SolidColorBrush(Color.FromArgb(255, 0, 255, 255));
             _fleeEllipse.Width = 50;
             _fleeEllipse.Height = 50;
@@ -42,8 +43,12 @@ namespace SilverlightBoids
 
             for (int i = 0; i < 200; i++)
             {
-                _world.AddBoid();
+                int id = _world.AddBoid();
+                _world.BoidList.Last().Action = new BoidGroupActionCohesion(_world.BoidList, id);
+
             }
+
+            //_world.SetGlobalAction(WorldStatus.GlobalWander);
         }
 
         void MainPage_MouseMove(object sender, MouseEventArgs e)

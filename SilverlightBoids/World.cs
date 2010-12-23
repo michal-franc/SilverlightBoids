@@ -21,7 +21,8 @@ namespace SilverlightBoids
         GlobalSeek,
         GlobalFlee,
         GlobalFollowPath,
-        AddBoid
+        GlobalWander,
+        AddBoid,
 
     }
 
@@ -56,17 +57,21 @@ namespace SilverlightBoids
         #endregion
 
         #region Public Methods
-        public void AddBoid(Point p)
+        public int AddBoid(Point p)
         {
+            int id = GetNewId();
             BoidControl boid = new BoidControl(new Vector2(p), GetNewId());
             AddBoid(boid);
+            return id;
 
         }
 
-        public void AddBoid()
+        public int AddBoid()
         {
+            int id = GetNewId();
             BoidControl boid = new BoidControl(GetRandomVector(), GetNewId());
             AddBoid(boid);
+            return id;
         }
 
 
@@ -80,6 +85,8 @@ namespace SilverlightBoids
                     boid.Action = new BoidActionFlee();
                 else if (status == SilverlightBoids.WorldStatus.GlobalSeek)
                     boid.Action = new BoidActionSeek();
+                else if (status == SilverlightBoids.WorldStatus.GlobalWander)
+                    boid.Action = new BoidActionWander();
 
             }
         }

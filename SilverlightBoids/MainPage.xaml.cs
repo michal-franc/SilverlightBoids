@@ -39,21 +39,22 @@ namespace SilverlightBoids
             _timer.Interval = TimeSpan.FromMilliseconds(2);
             _timer.Start();
 
-            this.MouseMove += new MouseEventHandler(MainPage_MouseMove);
+            LayoutRoot.MouseMove += new MouseEventHandler(MainPage_MouseMove);
 
-            for (int i = 0; i < 200; i++)
+            for (int i = 0; i < 500; i++)
             {
                 int id = _world.AddBoid();
-                _world.BoidList.Last().Action = new BoidGroupActionCohesion(_world.BoidList, id);
+                //_world.BoidList.Last().Action = new BoidGroupActionCohesion(_world.BoidList, id);
 
             }
 
-            //_world.SetGlobalAction(WorldStatus.GlobalWander);
+            _world.SetGlobalAction(WorldStatus.GlobalWander);
         }
 
         void MainPage_MouseMove(object sender, MouseEventArgs e)
         {
-            _mousePosition = e.GetPosition(this);
+            Canvas canvas = sender as Canvas;
+            _mousePosition = e.GetPosition(canvas);
         }
 
         public void TimerCallback(object sender, EventArgs e)

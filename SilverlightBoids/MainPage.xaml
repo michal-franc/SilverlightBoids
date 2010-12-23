@@ -6,13 +6,15 @@
     mc:Ignorable="d"
              Width="Auto" Height="Auto"
     d:DesignHeight="500" d:DesignWidth="500" xmlns:my="clr-namespace:SilverlightBoids">
-    <Grid >
+    <Grid  Background="DarkGray">
         <Grid.RowDefinitions>
             <RowDefinition Height="9*"></RowDefinition>
             <RowDefinition Height="1*"></RowDefinition>
         </Grid.RowDefinitions>
-    <Canvas Grid.Row="0" Name="LayoutRoot" Background="Black">
-    </Canvas>
+        <Border Grid.Row="0" VerticalAlignment="Center" Width="800" Height="500"  BorderBrush="Red" BorderThickness="2">
+        <Canvas  Name="LayoutRoot" Background="Black">
+         </Canvas>
+        </Border>
         <my:MenuControl Grid.Row="1" x:Name="menuControl1" />
     </Grid>
 </UserControl>

@@ -29,7 +29,7 @@ namespace SilverlightBoids
     public class World
     {
         #region Fields
-        private Panel _map;
+        public Panel Map { get; set; }
         private IList<BoidControl> _boidList = new List<BoidControl>();
 
         public WorldStatus WorldStatus { get; set; }
@@ -42,7 +42,8 @@ namespace SilverlightBoids
             }
         }
 
-
+        public double WorldWidth { get; set; }
+        public double WorldHeight { get; set; }
 
         public IList<Point> GlobalPath { get; set; }
         #endregion
@@ -51,9 +52,10 @@ namespace SilverlightBoids
         public World(Panel map)
         {
             WorldStatus = WorldStatus.None;
-            _map = map;
-
-        } 
+                Map = map;
+            WorldHeight = 800;
+            WorldWidth =  500;
+        }
         #endregion
 
         #region Public Methods
@@ -96,7 +98,7 @@ namespace SilverlightBoids
         {
             foreach (BoidControl boid in _boidList)
             {
-                boid.Go(new Vector2(param));
+                boid.Go(new Vector2(param),this);
             }
         } 
         #endregion
@@ -105,7 +107,7 @@ namespace SilverlightBoids
         private void AddBoid(BoidControl boid)
         {
             BoidList.Add(boid);
-            _map.Children.Add(boid);
+            Map.Children.Add(boid);
         }
 
         private Vector2 GetRandomVector()

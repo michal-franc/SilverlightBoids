@@ -55,7 +55,7 @@ namespace SilverlightBoids
             InitializeComponent();
         }
 
-        public void Go(Vector2 dest)
+        public void Go(Vector2 dest,World world)
         {
             if (this.Action != null)
             {
@@ -63,8 +63,34 @@ namespace SilverlightBoids
                 _steerForce = Vector2.Truncate(_steerForce, _maxForce);
                 _acceleration = _steerForce / _mass;
                 _velocity = Vector2.Truncate(_velocity + _acceleration, _maxSpeed);
-                Position = Vector2.Add(_velocity, Position);
+
+                Position = CheckBoundaries(Vector2.Add(_velocity, Position), (int)world.WorldHeight, (int)world.WorldWidth);
             }
+        }
+
+        public Vector2 CheckBoundaries(Vector2 newPosition,int maxX,int maxY)
+        {
+            int margin = 2;
+
+            if (newPosition.X <= margin)
+            {
+                newPosition.X = maxX - margin;
+            }
+            else if (newPosition.X >= maxX - 4)
+            {
+                newPosition.X = margin;
+            }
+
+            if (newPosition.Y <= margin)
+            {
+                newPosition.Y = maxY - margin;
+            }
+            else if (newPosition.Y >= maxY - 4)
+            {
+                newPosition.Y = margin;
+            }
+
+            return newPosition;
         }
     }
 }

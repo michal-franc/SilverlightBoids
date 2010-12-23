@@ -30,15 +30,15 @@ namespace SilverlightBoids
         private void btnAddBoid_Click(object sender, RoutedEventArgs e)
         {
             txtSelectedOption.Text = "Add Boid";
-            Grid grid = this.Parent as Grid;
+
             if (World.WorldStatus != WorldStatus.AddBoid)
             {
-                grid.MouseLeftButtonDown += new MouseButtonEventHandler(grid_MouseLeftButtonDown);
+                World.Map.MouseLeftButtonDown += new MouseButtonEventHandler(grid_MouseLeftButtonDown);
                 World.WorldStatus = WorldStatus.AddBoid;
             }
             else
             {
-                grid.MouseLeftButtonDown -= new MouseButtonEventHandler(grid_MouseLeftButtonDown);
+                World.Map.MouseLeftButtonDown -= new MouseButtonEventHandler(grid_MouseLeftButtonDown);
                 World.WorldStatus = WorldStatus.None;
             }
         }
@@ -60,16 +60,15 @@ namespace SilverlightBoids
         private void btnFollowPath_Click(object sender, RoutedEventArgs e)
         {
             txtSelectedOption.Text = "Follow Path";
-            Grid grid = this.Parent as Grid;
             if (World.WorldStatus != WorldStatus.GlobalFollowPath)
             {
                 _globalPath = new List<Point>();
-                grid.MouseLeftButtonDown +=new MouseButtonEventHandler(grid1_MouseLeftButtonDown);
+                World.Map.MouseLeftButtonDown +=new MouseButtonEventHandler(grid1_MouseLeftButtonDown);
                 World.WorldStatus = WorldStatus.GlobalFollowPath;
             }
             else
             {
-                grid.MouseLeftButtonDown -= new MouseButtonEventHandler(grid1_MouseLeftButtonDown);
+                World.Map.MouseLeftButtonDown -= new MouseButtonEventHandler(grid1_MouseLeftButtonDown);
                 World.GlobalPath = _globalPath;
                 World.SetGlobalAction(WorldStatus.GlobalFollowPath);
                 World.WorldStatus = WorldStatus.None;
@@ -84,21 +83,20 @@ namespace SilverlightBoids
 
         void grid1_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            Grid element = sender as Grid;
             if(_globalPath.Count>0)
             {
                 Line line = new Line();
-                line.X2 = e.GetPosition(element).X;
-                line.Y2 = e.GetPosition(element).Y;
+                line.X2 = e.GetPosition(World.Map).X;
+                line.Y2 = e.GetPosition(World.Map).Y;
                 line.X1 = _globalPath.Last().X;
                 line.Y1 = _globalPath.Last().Y;
                 line.StrokeThickness = 1;
                 line.Stroke = new SolidColorBrush(Color.FromArgb(255,0,255,255));
 
-                element.Children.Add(line);
+                World.Map.Children.Add(line);
                    
             }
-            _globalPath.Add(e.GetPosition(element));
+            _globalPath.Add(e.GetPosition(World.Map));
         }
     }
 }

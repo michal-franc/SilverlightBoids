@@ -19,9 +19,9 @@ namespace SilverlightBoids.Logic
 
         public static void Save(StringBuilder sb)
         {
-            LogPage.Text += sb.ToString();
+            LogDestination.Text += sb.ToString();
         }
 
-        public static TextBlock LogPage { get; set; }
+        public static TextBlock LogDestination { get; set; }
     }
 }

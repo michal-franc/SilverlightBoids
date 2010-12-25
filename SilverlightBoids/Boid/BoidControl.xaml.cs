@@ -56,7 +56,7 @@ namespace SilverlightBoids
             InitializeComponent();
         }
 
-        public void Go(Vector2 dest,World world)
+        public void Go(Vector2 dest, WorldLogic.World world)
         {
             if (this.Action != null)
             {

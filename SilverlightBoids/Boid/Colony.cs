@@ -12,10 +12,10 @@ using System.Collections.Generic;
 
 namespace SilverlightBoids.Boid
 {
-
-
     public class Colony
     {
+        public Point ColonyPosition { get; set; }
+
         public IList<BoidControl> Boids { get; set; }
         public Color Color { get; set; }
         public int BoidCounter 

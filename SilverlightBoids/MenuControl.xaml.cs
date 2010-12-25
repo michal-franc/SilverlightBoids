@@ -10,13 +10,14 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using SilverlightBoids.Logic;
+using SilverlightBoids.WorldLogic;
 
 namespace SilverlightBoids
 {
     public partial class MenuControl : UserControl
     {
         private IList<Point> _globalPath;
-        public World World { get; set; }
+        public WorldLogic.World World { get; set; }
         public MenuControl()
         {
             InitializeComponent();

@@ -21,9 +21,9 @@ namespace SilverlightBoids.Logic
         private int _wanderJitter = 20;
         private int _wanderRadius = 10;
 
-        public BoidActionWander(int counter)
+        public BoidActionWander(int generatorSeed)
         {
-            generator  = new Random(counter);
+            generator = new Random(generatorSeed);
         }
 
 

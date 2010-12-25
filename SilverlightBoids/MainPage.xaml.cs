@@ -12,12 +12,13 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using SilverlightBoids.Logic;
 using SilverlightBoids.Logic.Styles;
+using SilverlightBoids.WorldLogic;
 
 namespace SilverlightBoids
 {
     public partial class MainPage : UserControl
     {
-        private World _world;
+        private WorldLogic.World _world;
         private GameTimer _timer;
         private Point _mousePosition = new Point(0,0);
         private FleeEllipse _fleeEllipse = new FleeEllipse();
@@ -25,20 +26,29 @@ namespace SilverlightBoids
         public MainPage()
         {
             InitializeComponent();
-            this.LayoutRoot.Children.Add(_fleeEllipse);
-            _world = new World(LayoutRoot);
+            this.MainCanvas.Children.Add(_fleeEllipse);
+            _world = new WorldLogic.World(MainCanvas);
             menuControl1.World = _world;
-            Logger.LogPage = txtBlockLog;
+            Logger.LogDestination = txtBlockLog;
 
             _timer = new GameTimer(new EventHandler(TimerCallback));
 
-            LayoutRoot.MouseMove += new MouseEventHandler(MainPage_MouseMove);
+            MainCanvas.MouseMove += new MouseEventHandler(MainPage_MouseMove);
 
+
+
+            //Parameters of starting simulation
             for (int i = 0; i < 500; i++)
             {
                 int id = _world.AddBoid();
             }
-            _world.SetGlobalAction(WorldStatus.GlobalWander);
+
+            for (int i = 0; i < 100; i++)
+            {
+                _world.AddWorldObject(new WorldObjectFood());
+            }
+
+                _world.SetGlobalAction(WorldStatus.GlobalWander);
         }
 
         void MainPage_MouseMove(object sender, MouseEventArgs e)

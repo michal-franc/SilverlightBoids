@@ -77,6 +77,19 @@ namespace SilverlightBoids.Logic
             get { return unitYVector; }
         }
 
+        public bool IsNan
+        {
+            get
+            {
+                if (float.IsNaN(this.X) || float.IsNaN(this.Y))
+                    return true;
+                else
+                    return false;
+
+            }
+        }
+
+
         #endregion Properties
 
 

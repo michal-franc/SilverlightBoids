@@ -87,7 +87,7 @@ namespace SilverlightBoids
                 else if (status == SilverlightBoids.WorldStatus.GlobalSeek)
                     boid.Action = new BoidActionSeek();
                 else if (status == SilverlightBoids.WorldStatus.GlobalWander)
-                    boid.Action = new BoidActionWander();
+                    boid.Action = new BoidActionWander(boid.ID);
 
             }
         }

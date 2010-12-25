@@ -16,8 +16,6 @@ namespace SilverlightBoids
 {
     public partial class BoidControl : UserControl
     {
-        private int _LogCounter = 0;
-        private int _maxLog = 100;
         public int ID { get; private set; }
 
         private Vector2 _position;
@@ -54,6 +52,7 @@ namespace SilverlightBoids
             _acceleration = Vector2.Zero;
             Position = startPoint;
             ID = Id;
+            Action = new BoidActionWander(ID);
             InitializeComponent();
         }
 
@@ -68,11 +67,7 @@ namespace SilverlightBoids
 
                 Position = CheckBoundaries(Vector2.Add(_velocity, Position), (int)world.WorldHeight, (int)world.WorldWidth);
 
-                if (_LogCounter <= _maxLog)
-                {
-                    Logger.Save(CreateLog());
-                }
-
+                //Logger.Save(CreateLog());
             }
         }
 
@@ -86,14 +81,13 @@ namespace SilverlightBoids
             sb.AppendLine(String.Format("Velocity : {0}", this._velocity));
             sb.AppendLine(String.Format("Position : {0}", this.Position));
             sb.AppendLine();
-            _LogCounter++;
 
             return sb;
         }
 
         public Vector2 CheckBoundaries(Vector2 newPosition,int maxX,int maxY)
         {
-            int margin = 2;
+            int margin = 3;
 
             if (newPosition.X <= margin)
             {
@@ -103,6 +97,7 @@ namespace SilverlightBoids
             {
                 newPosition.X = margin;
             }
+
 
             if (newPosition.Y <= margin)
             {

@@ -88,6 +88,11 @@
     <Compile Include="Logic\BoidAction\IBoidAction.cs" />
     <Compile Include="Logic\BoidAction\BoidGroupAction.cs" />
     <Compile Include="Logic\Logger.cs" />
+    <Compile Include="Logic\Settings.cs" />
+    <Compile Include="Logic\Styles\Colors.cs" />
+    <Compile Include="Logic\Styles\FleeEllipse.xaml.cs">
+      <DependentUpon>FleeEllipse.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Logic\Vector2.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -104,6 +109,10 @@
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
     <Page Include="Boid\BoidControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Logic\Styles\FleeEllipse.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

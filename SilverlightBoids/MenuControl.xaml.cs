@@ -27,6 +27,9 @@ namespace SilverlightBoids
             World.AddBoid();
         }
 
+        /// <summary>
+        /// Toogle Button Event for Add Boid Logic.
+        /// </summary>
         private void btnAddBoid_Click(object sender, RoutedEventArgs e)
         {
             txtSelectedOption.Text = "Add Boid";
@@ -57,6 +60,10 @@ namespace SilverlightBoids
             World.WorldStatus = WorldStatus.GlobalSeek;
         }
 
+
+        /// <summary>
+        /// Toggle button for Follow Patch Logic.
+        /// </summary>
         private void btnFollowPath_Click(object sender, RoutedEventArgs e)
         {
             txtSelectedOption.Text = "Follow Path";

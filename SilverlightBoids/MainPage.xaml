@@ -11,10 +11,17 @@
             <RowDefinition Height="9*"></RowDefinition>
             <RowDefinition Height="1*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Border Grid.Row="0" VerticalAlignment="Center" Width="800" Height="500"  BorderBrush="Red" BorderThickness="2">
-        <Canvas  Name="LayoutRoot" Background="Black">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition Width="8*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <ScrollViewer >
+        <TextBlock ScrollViewer.HorizontalScrollBarVisibility="Visible" Height="Auto" Width="Auto" Grid.Row="0" Grid.Column="0" Foreground="Red" FontSize="11"  Name="txtBlockLog" Text="" />
+        </ScrollViewer>
+        <Border Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Width="800" Height="500"  BorderBrush="Red" BorderThickness="2">
+        <Canvas Name="LayoutRoot" Background="Black">
          </Canvas>
         </Border>
-        <my:MenuControl Grid.Row="1" x:Name="menuControl1" />
+        <my:MenuControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="menuControl1" />
     </Grid>
 </UserControl>

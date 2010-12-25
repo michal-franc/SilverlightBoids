@@ -23,7 +23,6 @@ namespace SilverlightBoids
         GlobalFollowPath,
         GlobalWander,
         AddBoid,
-
     }
 
     public class World

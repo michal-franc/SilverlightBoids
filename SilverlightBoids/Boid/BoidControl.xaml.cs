@@ -87,26 +87,14 @@ namespace SilverlightBoids
 
         public Vector2 CheckBoundaries(Vector2 newPosition,int maxX,int maxY)
         {
-            int margin = 3;
-
-            if (newPosition.X <= margin)
-            {
-                newPosition.X = maxX - margin;
-            }
-            else if (newPosition.X >= maxX - 4)
-            {
-                newPosition.X = margin;
-            }
-
-
-            if (newPosition.Y <= margin)
-            {
-                newPosition.Y = maxY - margin;
-            }
-            else if (newPosition.Y >= maxY - 4)
-            {
-                newPosition.Y = margin;
-            }
+            if (newPosition.X > maxX)
+                newPosition.X = 0;
+            if (newPosition.Y > maxY)
+                newPosition.Y = 0;
+            if (newPosition.X < 0)
+                newPosition.X = maxX;
+            if (newPosition.Y < 0)
+                newPosition.Y = maxY;
 
             return newPosition;
         }

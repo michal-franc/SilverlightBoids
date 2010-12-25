@@ -112,8 +112,8 @@ namespace SilverlightBoids
         private Vector2 GetRandomVector()
         {
             Random rand = new Random(DateTime.Now.Day + DateTime.Now.Millisecond);
-            int x = rand.Next(1, 600);
-            int y = rand.Next(1, 600);
+            int x = rand.Next(1, (int)WorldWidth);
+            int y = rand.Next(1, (int)WorldHeight);
 
             return new Vector2(x, y);
         }

@@ -58,9 +58,9 @@ namespace SilverlightBoids.Logic
         {
             int oldX = Convert.ToInt32(location.X);
             int oldY = Convert.ToInt32(location.Y);
-
-            int newX = +generator.Next(oldX - _wanderFov, oldX + _wanderFov);
-            int newY = +generator.Next(oldY - _wanderFov, oldY + _wanderFov);
+            
+            int newX = generator.Next(oldX - _wanderFov, oldX + _wanderFov);
+            int newY = generator.Next(oldY - _wanderFov, oldY + _wanderFov);
             newLocation = new Vector2(newX, newY);
             return _seek.DoAction(newLocation.Value, location, velocity, maxSpeed);
         }

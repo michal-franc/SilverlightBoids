@@ -106,6 +106,7 @@
     <Compile Include="WorldLogic\World.cs" />
     <Compile Include="WorldLogic\WorldObject.cs" />
     <Compile Include="WorldLogic\WorldObjectFood.cs" />
+    <Compile Include="WorldLogic\WorldObjectWall.cs" />
     <Compile Include="WorldLogic\WorlfObjectContainer.xaml.cs">
       <DependentUpon>WorlfObjectContainer.xaml</DependentUpon>
     </Compile>

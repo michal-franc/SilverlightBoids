@@ -13,7 +13,7 @@ using SilverlightBoids.Logic;
 
 namespace SilverlightBoids.WorldLogic
 {
-    public partial class WorlfObjectContainer : UserControl
+    public partial class WorldObjectContainer : UserControl
     {
         private Vector2 _position;
 
@@ -37,7 +37,7 @@ namespace SilverlightBoids.WorldLogic
         }
 
 
-        public WorlfObjectContainer(WorldObject containedObject)
+        public WorldObjectContainer(WorldObject containedObject)
         {
             InitializeComponent();
             Shape shape = null;

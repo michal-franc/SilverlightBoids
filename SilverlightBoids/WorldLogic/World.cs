@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using SilverlightBoids.Logic;
 using System.Linq;
 using SilverlightBoids.Boid;
+using SilverlightBoids.Logic.BoidAction;
 
 namespace SilverlightBoids.WorldLogic
 {
@@ -24,6 +25,7 @@ namespace SilverlightBoids.WorldLogic
         GlobalFollowPath,
         GlobalWander,
         AddBoid,
+        LookForFood
     }
 
     public class World
@@ -32,6 +34,7 @@ namespace SilverlightBoids.WorldLogic
         public Panel Map { get; set; }
         private IList<Colony> _boidColonies = new List<Colony>();
         private IList<BoidControl> _boidList = new List<BoidControl>();
+        private IList<WorldObjectContainer> _worldObjectsList = new List<WorldObjectContainer>();
 
         public WorldStatus WorldStatus { get; set; }
 
@@ -82,14 +85,16 @@ namespace SilverlightBoids.WorldLogic
         {
             foreach(BoidControl boid in this._boidList)
             {
-                if(status == WorldStatus.GlobalFollowPath)
-                     boid.Action = new BoidActionFollowPath(GlobalPath);
-                else if(status == WorldStatus.GlobalFlee)
+                if (status == WorldStatus.GlobalFollowPath)
+                    boid.Action = new BoidActionFollowPath(GlobalPath);
+                else if (status == WorldStatus.GlobalFlee)
                     boid.Action = new BoidActionFlee();
                 else if (status == WorldStatus.GlobalSeek)
                     boid.Action = new BoidActionSeek();
                 else if (status == WorldStatus.GlobalWander)
                     boid.Action = new BoidActionWander(boid.ID);
+                else if (status == WorldLogic.WorldStatus.LookForFood)
+                    boid.Action = new BoidActionLookFor(new WorldObjectFood(1),this);
 
             }
         }
@@ -105,9 +110,10 @@ namespace SilverlightBoids.WorldLogic
 
         public void AddWorldObject(WorldObject worldObject)
         {
-            WorlfObjectContainer container = new WorlfObjectContainer(worldObject);
+            WorldObjectContainer container = new WorldObjectContainer(worldObject);
             container.Position = GetRandomVector();
             Map.Children.Add(container);
+            _worldObjectsList.Add(container);
         }
 
         #endregion
@@ -142,6 +148,23 @@ namespace SilverlightBoids.WorldLogic
         } 
         #endregion
 
+        internal Vector2 LookFor(WorldObject _objectToLookFor, Vector2 location,int radius)
+        {
+            foreach (WorldObjectContainer obj in this._worldObjectsList)
+            {
+                if (obj.ContainedObject.GetType() ==  _objectToLookFor.GetType())
+                {
+                    if (obj.Position.X > location.X - radius && obj.Position.X < location.X + radius)
+                    {
+                        if (obj.Position.Y > location.Y - radius && obj.Position.Y < location.Y + radius)
+                        {
+                            return obj.Position;
+                        }
+                    }
+                }   
+            }
 
+            return Vector2.Zero;
+        }
     }
 }

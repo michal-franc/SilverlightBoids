@@ -45,10 +45,10 @@ namespace SilverlightBoids
 
             for (int i = 0; i < 100; i++)
             {
-                _world.AddWorldObject(new WorldObjectFood());
+                _world.AddWorldObject(new WorldObjectFood(2));
             }
 
-                _world.SetGlobalAction(WorldStatus.GlobalWander);
+                _world.SetGlobalAction(WorldStatus.LookForFood);
         }
 
         void MainPage_MouseMove(object sender, MouseEventArgs e)

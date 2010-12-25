@@ -107,8 +107,8 @@
     <Compile Include="WorldLogic\WorldObject.cs" />
     <Compile Include="WorldLogic\WorldObjectFood.cs" />
     <Compile Include="WorldLogic\WorldObjectWall.cs" />
-    <Compile Include="WorldLogic\WorlfObjectContainer.xaml.cs">
-      <DependentUpon>WorlfObjectContainer.xaml</DependentUpon>
+    <Compile Include="WorldLogic\WorldObjectContainer.xaml.cs">
+      <DependentUpon>WorldObjectContainer.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -132,7 +132,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WorldLogic\WorlfObjectContainer.xaml">
+    <Page Include="WorldLogic\WorldObjectContainer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

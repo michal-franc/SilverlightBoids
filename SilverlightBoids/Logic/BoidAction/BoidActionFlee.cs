@@ -18,7 +18,7 @@ namespace SilverlightBoids.Logic
 
         public Vector2 DoAction(Vector2 dest, Vector2 location, Vector2 velocity, int maxSpeed)
         {
-            if (Vector2.Length(Vector2.Subtract(dest, location)) > 50)
+            if (Vector2.Length(Vector2.Subtract(dest, location)) > Logic.Settings.FleeRadius)
             {
                 return new Vector2(0);
             }

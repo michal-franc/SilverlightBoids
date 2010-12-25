@@ -18,7 +18,7 @@ namespace SilverlightBoids
     public partial class MainPage : UserControl
     {
         private World _world;
-        private DispatcherTimer _timer;
+        private GameTimer _timer;
         private Point _mousePosition = new Point(0,0);
         private FleeEllipse _fleeEllipse = new FleeEllipse();
 
@@ -30,12 +30,7 @@ namespace SilverlightBoids
             menuControl1.World = _world;
             Logger.LogPage = txtBlockLog;
 
-
-
-            _timer = new DispatcherTimer();
-            _timer.Tick += new EventHandler(TimerCallback);
-            _timer.Interval = TimeSpan.FromMilliseconds(2);
-            _timer.Start();
+            _timer = new GameTimer(new EventHandler(TimerCallback));
 
             LayoutRoot.MouseMove += new MouseEventHandler(MainPage_MouseMove);
 

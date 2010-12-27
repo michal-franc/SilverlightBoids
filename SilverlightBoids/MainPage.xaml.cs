@@ -13,6 +13,7 @@ using System.Windows.Threading;
 using SilverlightBoids.Logic;
 using SilverlightBoids.Logic.Styles;
 using SilverlightBoids.WorldLogic;
+using SilverlightBoids.Logic.BoidAction;
 
 namespace SilverlightBoids
 {
@@ -38,17 +39,30 @@ namespace SilverlightBoids
 
 
             //Parameters of starting simulation
-            for (int i = 0; i < 500; i++)
-            {
-                int id = _world.AddBoid();
-            }
-
             for (int i = 0; i < 100; i++)
             {
-                _world.AddWorldObject(new WorldObjectFood(2));
+                int id = _world.AddBoid();
+
+                if (i == 0)
+                {
+                    _world.BoidList[0].Action = new BoidActionWander(id);
+                }
+                else
+                {
+                    _world.BoidList[i].Action = new BoidActionAligment(_world.BoidList[0]);
+                }
             }
 
-                _world.SetGlobalAction(WorldStatus.LookForFood);
+       
+
+            //for (int i = 0; i < 100; i++)
+            //{
+            //    _world.AddWorldObject(new WorldObjectFood(2));
+            //}
+
+            //_world.SetGlobalAction(WorldStatus.LookForFood);
+            //_world.SetGlobalAction(WorldStatus.GlobalCohesion);
+            //_world.SetGlobalAction(WorldStatus.GlobalWander);
         }
 
         void MainPage_MouseMove(object sender, MouseEventArgs e)

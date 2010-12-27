@@ -18,7 +18,7 @@ namespace SilverlightBoids.Logic.BoidAction
         private World _world;
 
         private WorldObject _objectToLookFor;
-        private int _radius = 50;
+        private int _radius = 10;
 
         public BoidActionLookFor(WorldObject objectToLook,World world)
         {

@@ -24,7 +24,7 @@ namespace SilverlightBoids
         private int _mass = 1;
         private int _maxForce = 1;
         private int _maxSpeed = 1;
-        private Vector2 _steerForce;
+        public Vector2 _steerForce;
 
         public IBoidAction Action { get; set; }
 

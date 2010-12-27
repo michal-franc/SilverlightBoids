@@ -73,10 +73,12 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Boid\BoidAi.cs" />
     <Compile Include="Boid\BoidControl.xaml.cs">
       <DependentUpon>BoidControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Boid\Colony.cs" />
+    <Compile Include="Logic\BoidAction\BoidActionAligment.cs" />
     <Compile Include="Logic\BoidAction\BoidActionLookFor.cs" />
     <Compile Include="Logic\BoidAction\BoidGroupActionCohesion.cs" />
     <Compile Include="Logic\BoidAction\BoidActionFlee.cs" />

@@ -24,6 +24,7 @@ namespace SilverlightBoids.WorldLogic
         GlobalFlee,
         GlobalFollowPath,
         GlobalWander,
+        GlobalCohesion,
         AddBoid,
         LookForFood
     }
@@ -95,6 +96,8 @@ namespace SilverlightBoids.WorldLogic
                     boid.Action = new BoidActionWander(boid.ID);
                 else if (status == WorldLogic.WorldStatus.LookForFood)
                     boid.Action = new BoidActionLookFor(new WorldObjectFood(1),this);
+                else if(status == WorldLogic.WorldStatus.GlobalCohesion)
+                    boid.Action = new BoidGroupActionCohesion(_boidList, boid.ID);
 
             }
         }

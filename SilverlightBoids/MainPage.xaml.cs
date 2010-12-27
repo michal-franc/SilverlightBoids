@@ -14,6 +14,7 @@ using SilverlightBoids.Logic;
 using SilverlightBoids.Logic.Styles;
 using SilverlightBoids.WorldLogic;
 using SilverlightBoids.Logic.BoidAction;
+using SilverlightBoids.Boid;
 
 namespace SilverlightBoids
 {
@@ -38,6 +39,13 @@ namespace SilverlightBoids
 
 
 
+
+            for (int i = 0; i < 100; i++)
+            {
+                _world.AddWorldObject(new WorldObjectFood(2));
+            }
+
+
             //Parameters of starting simulation
             for (int i = 0; i < 100; i++)
             {
@@ -52,19 +60,16 @@ namespace SilverlightBoids
                 //    _world.BoidList[i].Action = new BoidActionAligment(_world.BoidList[0]);
                 //}
 
-                _world.BoidList[i].Action = new BoidActionSeparation(_world,id);
+                //_world.BoidList[i].Action = new BoidActionSeparation(_world,id);
+
+                _world.BoidList[i].Action = new BoidAi(id, _world);
             }
 
-       
-
-            //for (int i = 0; i < 100; i++)
-            //{
-            //    _world.AddWorldObject(new WorldObjectFood(2));
-            //}
 
             //_world.SetGlobalAction(WorldStatus.LookForFood);
             //_world.SetGlobalAction(WorldStatus.GlobalCohesion);
             //_world.SetGlobalAction(WorldStatus.GlobalWander);
+         
         }
 
         void MainPage_MouseMove(object sender, MouseEventArgs e)

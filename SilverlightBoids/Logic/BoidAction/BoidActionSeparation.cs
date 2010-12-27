@@ -29,7 +29,7 @@ namespace SilverlightBoids.Logic
             _world = world;
             _id = id;
             _flee = new BoidActionFlee();
-            _wander = new BoidActionWander(id);
+            _wander = new BoidActionWander();
         }
 
         public Vector2 DoAction(Vector2 dest, Vector2 location, Vector2 velocity, int maxSpeed)

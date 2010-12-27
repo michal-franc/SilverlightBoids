@@ -13,6 +13,7 @@ namespace SilverlightBoids.Logic
 {
     public class BoidActionWander : IBoidAction
     {
+        private static int _seed = 1;
         private BoidActionSeek _seek = new BoidActionSeek();
         Random generator;
 
@@ -21,9 +22,10 @@ namespace SilverlightBoids.Logic
         private int _wanderJitter = 20;
         private int _wanderRadius = 10;
 
-        public BoidActionWander(int generatorSeed)
+        public BoidActionWander()
         {
-            generator = new Random(generatorSeed);
+            generator = new Random(_seed);
+            _seed++;
         }
 
 

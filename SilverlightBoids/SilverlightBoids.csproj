@@ -79,6 +79,7 @@
     </Compile>
     <Compile Include="Boid\Colony.cs" />
     <Compile Include="Logic\BoidAction\BoidActionAligment.cs" />
+    <Compile Include="Logic\BoidAction\BoidActionAvoidObject.cs" />
     <Compile Include="Logic\BoidAction\BoidActionLookFor.cs" />
     <Compile Include="Logic\BoidAction\BoidGroupActionCohesion.cs" />
     <Compile Include="Logic\BoidAction\BoidActionFlee.cs" />

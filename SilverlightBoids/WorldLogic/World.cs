@@ -94,7 +94,7 @@ namespace SilverlightBoids.WorldLogic
                 else if (status == WorldStatus.GlobalSeek)
                     boid.Action = new BoidActionSeek();
                 else if (status == WorldStatus.GlobalWander)
-                    boid.Action = new BoidActionWander(boid.ID);
+                    boid.Action = new BoidActionWander();
                 else if (status == WorldLogic.WorldStatus.LookForFood)
                     boid.Action = new BoidActionLookFor(new WorldObjectFood(1),this);
                 else if(status == WorldLogic.WorldStatus.GlobalCohesion)

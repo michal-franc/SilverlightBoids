@@ -52,7 +52,7 @@ namespace SilverlightBoids
             _acceleration = Vector2.Zero;
             Position = startPoint;
             ID = Id;
-            Action = new BoidActionWander(ID);
+            Action = new BoidActionWander();
             InitializeComponent();
         }
 

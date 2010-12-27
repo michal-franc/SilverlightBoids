@@ -463,5 +463,20 @@ namespace SilverlightBoids.Logic
         }
 
         #endregion Operators
+
+        public bool IsZero
+        {
+            get
+            {
+                if (X == 0 && Y == 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
     }
 }

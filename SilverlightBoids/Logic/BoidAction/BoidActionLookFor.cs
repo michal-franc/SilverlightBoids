@@ -15,6 +15,7 @@ namespace SilverlightBoids.Logic.BoidAction
     public class BoidActionLookFor : IBoidAction
     {
         private BoidActionSeek _seek = new BoidActionSeek();
+        private BoidActionNoAction _noAction = new BoidActionNoAction();
         private World _world;
 
         private WorldObject _objectToLookFor;
@@ -30,8 +31,12 @@ namespace SilverlightBoids.Logic.BoidAction
         public Vector2 DoAction(Vector2 dest, Vector2 location, Vector2 velocity, int maxSpeed)
         {
             Vector2 newDest = _world.LookFor(_objectToLookFor, location,_radius);
-
-            return _seek.DoAction(newDest, location, velocity, maxSpeed);
+            if (newDest.IsZero)
+            {
+                return _noAction.DoAction(dest, location, velocity, maxSpeed);
+            }
+            else
+                return _seek.DoAction(newDest, location, velocity, maxSpeed);
         }
 
         #endregion

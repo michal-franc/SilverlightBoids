@@ -31,6 +31,7 @@ namespace SilverlightBoids.WorldLogic
 
     public class World
     {
+        Random rand = new Random(DateTime.Now.Day + DateTime.Now.Millisecond);
         #region Fields
         public Panel Map { get; set; }
         private IList<Colony> _boidColonies = new List<Colony>();
@@ -131,9 +132,9 @@ namespace SilverlightBoids.WorldLogic
 
         private Vector2 GetRandomVector()
         {
-            Random rand = new Random(DateTime.Now.Day + DateTime.Now.Millisecond);
-            int x = rand.Next(1, (int)WorldWidth);
-            int y = rand.Next(1, (int)WorldHeight);
+
+            double x = rand.NextDouble() * WorldWidth;
+            double y = rand.NextDouble() * WorldHeight;
 
             return new Vector2(x, y);
         }

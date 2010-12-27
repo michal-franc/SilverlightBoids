@@ -43,14 +43,16 @@ namespace SilverlightBoids
             {
                 int id = _world.AddBoid();
 
-                if (i == 0)
-                {
-                    _world.BoidList[0].Action = new BoidActionWander(id);
-                }
-                else
-                {
-                    _world.BoidList[i].Action = new BoidActionAligment(_world.BoidList[0]);
-                }
+                //if (i == 0)
+                //{
+                //    _world.BoidList[0].Action = new BoidActionWander(id);
+                //}
+                //else
+                //{
+                //    _world.BoidList[i].Action = new BoidActionAligment(_world.BoidList[0]);
+                //}
+
+                _world.BoidList[i].Action = new BoidActionSeparation(_world,id);
             }
 
        

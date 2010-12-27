@@ -110,6 +110,12 @@ namespace SilverlightBoids.Logic
             this.Y = y;
         }
 
+        public Vector2(double x, double y)
+        {
+            this.X = (float)x;
+            this.Y = (float)y;
+        }
+
         /// <summary>
         /// Constructor for "square" vector.
         /// </summary>

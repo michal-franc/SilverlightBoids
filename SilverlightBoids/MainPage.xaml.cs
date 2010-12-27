@@ -40,35 +40,39 @@ namespace SilverlightBoids
 
 
 
-            for (int i = 0; i < 100; i++)
-            {
-                _world.AddWorldObject(new WorldObjectFood(2));
-            }
+            //for (int i = 0; i < 100; i++)
+            //{
+            //    _world.AddWorldObject(new WorldObjectFood(2));
+            //}
 
 
             //Parameters of starting simulation
-            for (int i = 0; i < 100; i++)
-            {
-                int id = _world.AddBoid();
+            //for (int i = 0; i < 100; i++)
+            //{
+            //    int id = _world.AddBoid();
 
-                //if (i == 0)
-                //{
-                //    _world.BoidList[0].Action = new BoidActionWander(id);
-                //}
-                //else
-                //{
-                //    _world.BoidList[i].Action = new BoidActionAligment(_world.BoidList[0]);
-                //}
+            //    //if (i == 0)
+            //    //{
+            //    //    _world.BoidList[0].Action = new BoidActionWander(id);
+            //    //}
+            //    //else
+            //    //{
+            //    //    _world.BoidList[i].Action = new BoidActionAligment(_world.BoidList[0]);
+            //    //}
 
-                //_world.BoidList[i].Action = new BoidActionSeparation(_world,id);
+            //    //_world.BoidList[i].Action = new BoidActionSeparation(_world,id);
 
-                _world.BoidList[i].Action = new BoidAi(id, _world);
-            }
+            //    _world.BoidList[i].Action = new BoidAi(id, _world);
+            //}
 
 
             //_world.SetGlobalAction(WorldStatus.LookForFood);
             //_world.SetGlobalAction(WorldStatus.GlobalCohesion);
             //_world.SetGlobalAction(WorldStatus.GlobalWander);
+
+            _world.AddColony();
+            _world.AddColony();
+
          
         }
 

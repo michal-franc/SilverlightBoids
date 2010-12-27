@@ -73,11 +73,16 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Boid\BoidAi.cs" />
+    <Compile Include="Boid\BoidAi.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Boid\BoidColony.xaml.cs">
+      <DependentUpon>BoidColony.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Boid\BoidControl.xaml.cs">
       <DependentUpon>BoidControl.xaml</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Boid\Colony.cs" />
     <Compile Include="Logic\BoidAction\BoidActionAligment.cs" />
     <Compile Include="Logic\BoidAction\BoidActionAvoidObject.cs" />
     <Compile Include="Logic\BoidAction\BoidActionLookFor.cs" />
@@ -119,6 +124,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="Boid\BoidColony.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Boid\BoidControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

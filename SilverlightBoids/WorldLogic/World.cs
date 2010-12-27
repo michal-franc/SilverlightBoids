@@ -31,10 +31,12 @@ namespace SilverlightBoids.WorldLogic
 
     public class World
     {
+        private int _colonyPositionRadius = 200;
+
         Random rand = new Random(DateTime.Now.Day + DateTime.Now.Millisecond);
         #region Fields
         public Panel Map { get; set; }
-        private IList<Colony> _boidColonies = new List<Colony>();
+        private IList<BoidColony> _boidColonies = new List<BoidColony>();
         private IList<BoidControl> _boidList = new List<BoidControl>();
         private IList<WorldObjectContainer> _worldObjectsList = new List<WorldObjectContainer>();
 
@@ -103,6 +105,24 @@ namespace SilverlightBoids.WorldLogic
             }
         }
 
+
+        public void AddColony()
+        {
+            //Place Colony Randomaly in some radius from another colony
+            Vector2 position = GetRandomVector();
+            foreach (BoidColony colony in this._boidColonies)
+            {
+                if (Vector2.Subtract(colony.Position, position).Length() < _colonyPositionRadius)
+                {
+                    position = GetRandomVector();
+                }
+            }
+
+            //Vector2 position = new Vector2(x,y);
+
+            BoidColony newColony = new BoidColony(SilverlightBoids.Logic.Styles.Colors.GetColor() , position);
+            this.Map.Children.Add(newColony);
+        }
 
         public void Go(Point param)
         {

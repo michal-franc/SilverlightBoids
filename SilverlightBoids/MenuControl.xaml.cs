@@ -106,5 +106,28 @@ namespace SilverlightBoids
             }
             _globalPath.Add(e.GetPosition(World.Map));
         }
+
+        private void AddColony_Checked(object sender, RoutedEventArgs e)
+        {
+            txtSelectedOption.Text = "Add colony.";
+
+            World.WorldStatus = WorldStatus.AddingColony;
+            World.Map.MouseLeftButtonDown += new MouseButtonEventHandler(Map_MouseLeftButtonDown);
+            
+            
+        }
+
+        private void AddColony_Unchecked(object sender, RoutedEventArgs e)
+        {
+            txtSelectedOption.Text = "Collonies added.";
+
+            World.WorldStatus = WorldStatus.None;
+            World.Map.MouseLeftButtonDown -= new MouseButtonEventHandler(Map_MouseLeftButtonDown);
+        }
+
+        private void Map_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            World.AddColony(e.GetPosition(World.Map));
+        }
     }
 }

@@ -46,5 +46,15 @@ namespace SilverlightBoids.Boid
             ColonyColor = color;
             Rect.Fill = new SolidColorBrush(color);
         }
+
+        public void ProduceBoids(TimeSpan interval)
+        {
+            
+        }
+
+        public void ProduceBoids(TimeSpan interval, int numberOfBoids)
+        {
+
+        }
     }
 }

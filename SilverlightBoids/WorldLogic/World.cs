@@ -26,7 +26,8 @@ namespace SilverlightBoids.WorldLogic
         GlobalWander,
         GlobalCohesion,
         AddBoid,
-        LookForFood
+        LookForFood,
+        AddingColony
     }
 
     public class World
@@ -122,6 +123,13 @@ namespace SilverlightBoids.WorldLogic
 
             BoidColony newColony = new BoidColony(SilverlightBoids.Logic.Styles.Colors.GetColor() , position);
             this.Map.Children.Add(newColony);
+        }
+
+        public void AddColony(Point placeOfColony)
+        {
+            BoidColony newColony = new BoidColony(Colors.Orange, new Vector2(placeOfColony));
+            _boidColonies.Add(newColony);
+            Map.Children.Add(newColony);
         }
 
         public void Go(Point param)

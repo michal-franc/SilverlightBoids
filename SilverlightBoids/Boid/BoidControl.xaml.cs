@@ -47,6 +47,11 @@ namespace SilverlightBoids
         }
 
         public BoidControl(Vector2 startPoint,int Id)
+            : this(startPoint, Id, Colors.Yellow)
+        {
+        }
+
+        public BoidControl(Vector2 startPoint, int Id, Color boidColor)
         {
             _velocity = Vector2.Zero;
             _acceleration = Vector2.Zero;
@@ -54,6 +59,7 @@ namespace SilverlightBoids
             ID = Id;
             Action = new BoidActionWander();
             InitializeComponent();
+            boidEllipse.Fill = new SolidColorBrush(boidColor);
         }
 
         public void Go(Vector2 dest, WorldLogic.World world)

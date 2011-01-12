@@ -63,11 +63,10 @@ namespace SilverlightBoids.Boid
             }
 
             return Id;
-        } 
+        }
 
-        public void ProduceBoids(object state)
+        public void ProduceBoids(TimeSpan interval)
         {
-            TimeSpan interval = (TimeSpan)state;
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = interval;
             timer.Tick += new EventHandler(GiveBirthToNiceBoid);
@@ -76,7 +75,7 @@ namespace SilverlightBoids.Boid
 
         private void GiveBirthToNiceBoid(object sender, EventArgs e)
         {
-            BoidControl boid = new BoidControl(Position, 2);
+            BoidControl boid = new BoidControl(Position, GetNewId(), ColonyColor);
             Boids.Add(boid);
             World.Map.Children.Add(boid);
             //TextBlock tb = World.Map.FindName("debugTextBlock") as TextBlock;
@@ -85,7 +84,12 @@ namespace SilverlightBoids.Boid
 
         public void ProduceBoids(TimeSpan interval, int numberOfBoids)
         {
-
+            for (int i = 0; i < numberOfBoids; i++)
+            {
+                BoidControl boid = new BoidControl(Position, GetNewId());
+                Boids.Add(boid);
+                World.Map.Children.Add(boid);
+            }
         }
     }
 }

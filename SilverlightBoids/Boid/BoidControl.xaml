@@ -7,6 +7,6 @@
     d:DesignHeight="20" d:DesignWidth="20">
     
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        <Ellipse Width="3" Height="3" Fill="Yellow"></Ellipse>
+        <Ellipse x:Name="boidEllipse" Width="3" Height="3"></Ellipse>
     </Grid>
 </UserControl>

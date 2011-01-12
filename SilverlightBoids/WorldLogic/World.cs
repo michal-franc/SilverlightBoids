@@ -143,7 +143,6 @@ namespace SilverlightBoids.WorldLogic
             BoidColony newColony = new BoidColony(color, new Vector2(placeOfColony), this);
             _boidColonies.Add(newColony);
             Map.Children.Add(newColony);
-            //ThreadPool.QueueUserWorkItem(newColony.ProduceBoids, TimeSpan.FromSeconds(1));
             newColony.ProduceBoids(TimeSpan.FromSeconds(1));
         }
 

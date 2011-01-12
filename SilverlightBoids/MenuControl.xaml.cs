@@ -127,7 +127,9 @@ namespace SilverlightBoids
 
         private void Map_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            World.AddColony(e.GetPosition(World.Map));
+
+
+            World.AddColony(e.GetPosition(World.Map), Logic.Styles.Colors.GetColor());
         }
     }
 }

@@ -81,7 +81,7 @@ namespace SilverlightBoids
             sb.AppendLine(String.Format("Velocity : {0}", this._velocity));
             sb.AppendLine(String.Format("Position : {0}", this.Position));
             sb.AppendLine();
-
+            
             return sb;
         }
 

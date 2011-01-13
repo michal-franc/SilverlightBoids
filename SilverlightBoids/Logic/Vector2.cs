@@ -85,7 +85,6 @@ namespace SilverlightBoids.Logic
                     return true;
                 else
                     return false;
-
             }
         }
 

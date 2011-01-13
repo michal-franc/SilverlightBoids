@@ -70,8 +70,8 @@ namespace SilverlightBoids
             //_world.SetGlobalAction(WorldStatus.GlobalCohesion);
             //_world.SetGlobalAction(WorldStatus.GlobalWander);
 
-            _world.AddColony();
-            _world.AddColony();
+            //_world.AddColony();
+            //_world.AddColony();
 
          
         }

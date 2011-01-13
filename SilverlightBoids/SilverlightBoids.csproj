@@ -84,7 +84,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Logic\BoidAction\BoidActionAligment.cs" />
+    <Compile Include="Logic\BoidAction\BoidActionArrive.cs" />
     <Compile Include="Logic\BoidAction\BoidActionAvoidObject.cs" />
+    <Compile Include="Logic\BoidAction\BoidActionCohesion.cs" />
     <Compile Include="Logic\BoidAction\BoidActionLookFor.cs" />
     <Compile Include="Logic\BoidAction\BoidGroupActionCohesion.cs" />
     <Compile Include="Logic\BoidAction\BoidActionFlee.cs" />
@@ -111,8 +113,11 @@
       <DependentUpon>MenuControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WorldLogic\RockObject.xaml.cs">
+      <DependentUpon>RockObject.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WorldLogic\World.cs" />
-    <Compile Include="WorldLogic\WorldObject.cs" />
+    <Compile Include="WorldLogic\IWorldObject.cs" />
     <Compile Include="WorldLogic\WorldObjectFood.cs" />
     <Compile Include="WorldLogic\WorldObjectWall.cs" />
     <Compile Include="WorldLogic\WorldObjectContainer.xaml.cs">
@@ -141,6 +146,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MenuControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorldLogic\RockObject.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

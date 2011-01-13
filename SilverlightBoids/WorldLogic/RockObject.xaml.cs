@@ -13,11 +13,9 @@ using SilverlightBoids.Logic;
 
 namespace SilverlightBoids.WorldLogic
 {
-    public partial class WorldObjectContainer : UserControl
+    public partial class RockObject : UserControl, IWorldObject
     {
         private Vector2 _position;
-
-        public IWorldObject ContainedObject { get; set; }
 
         public Vector2 Position
         {
@@ -36,29 +34,31 @@ namespace SilverlightBoids.WorldLogic
             }
         }
 
-
-        public WorldObjectContainer(IWorldObject containedObject)
+        public RockObject(Vector2 positionOnMap)
         {
             InitializeComponent();
-            Shape shape = null;
-            if (containedObject.ObjectType == WorldObjectType.Ellipse)
-            {
-                shape = new Ellipse();
-            }
-            else if (containedObject.ObjectType == WorldObjectType.Square)
-            {
-                shape = new Rectangle();
-            }
 
-            if (shape != null)
-            {
-                shape.Width = containedObject.Size;
-                shape.Height = containedObject.Size;
+            Position = positionOnMap;
+        }
 
-                ContainedObject = containedObject;
-                shape.Fill = containedObject.ObjectColor;
-                LayoutRoot.Children.Add(shape);
-            }
+        public RockObject(Point positionOnMap)
+            : this(new Vector2(positionOnMap))
+        {
+        }
+
+        public int Size
+        {
+            get { return (int)RockRectangle.Width; }
+        }
+
+        public SolidColorBrush ObjectColor
+        {
+            get { return RockRectangle.Fill as SolidColorBrush; }
+        }
+
+        public WorldObjectType ObjectType
+        {
+            get { return WorldObjectType.Square; }
         }
     }
 }

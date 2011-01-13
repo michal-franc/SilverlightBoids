@@ -109,9 +109,9 @@ namespace SilverlightBoids
 
         private void AddColony_Checked(object sender, RoutedEventArgs e)
         {
-            txtSelectedOption.Text = "Add colony.";
+            txtSelectedOption.Text = "Add colony...";
 
-            World.WorldStatus = WorldStatus.AddingColony;
+            //World.WorldStatus = WorldStatus.AddingColony;
             World.Map.MouseLeftButtonDown += new MouseButtonEventHandler(Map_MouseLeftButtonDown);
             
             
@@ -119,17 +119,64 @@ namespace SilverlightBoids
 
         private void AddColony_Unchecked(object sender, RoutedEventArgs e)
         {
-            txtSelectedOption.Text = "Collonies added.";
+            txtSelectedOption.Text = "Collonies added";
 
-            World.WorldStatus = WorldStatus.None;
+            //World.WorldStatus = WorldStatus.None;
             World.Map.MouseLeftButtonDown -= new MouseButtonEventHandler(Map_MouseLeftButtonDown);
         }
 
         private void Map_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-
-
             World.AddColony(e.GetPosition(World.Map), Logic.Styles.Colors.GetColor());
+        }
+
+        private void AddRockObject_Checked(object sender, RoutedEventArgs e)
+        {
+            txtSelectedOption.Text = "Add rock(s)...";
+
+            //World.WorldStatus = WorldStatus.AddingRockObject;
+            World.Map.MouseLeftButtonDown += new MouseButtonEventHandler(Map_MouseLeftButtonDown_AddingNewRock);
+        }
+
+        private void AddRockObject_Unchecked(object sender, RoutedEventArgs e)
+        {
+            txtSelectedOption.Text = "Rocks added.";
+            
+            //World.WorldStatus = WorldStatus.None;
+            World.Map.MouseLeftButtonDown -= new MouseButtonEventHandler(Map_MouseLeftButtonDown_AddingNewRock);
+        }
+
+        private void Map_MouseLeftButtonDown_AddingNewRock(object sender, MouseButtonEventArgs e)
+        {
+            World.AddRockObject(e.GetPosition(World.Map));
+        }
+
+        private void btnArrive_Click(object sender, RoutedEventArgs e)
+        {
+            txtSelectedOption.Text = "Arrive";
+            World.WorldStatus = WorldStatus.GlobalArrive;
+            World.SetGlobalAction(World.WorldStatus);
+        }
+
+        private void btnSeparate_Click(object sender, RoutedEventArgs e)
+        {
+            txtSelectedOption.Text = "Separate";
+            World.WorldStatus = WorldStatus.GlobalSeparate;
+            World.SetGlobalAction(World.WorldStatus);
+        }
+
+        private void btnCohesion_Click(object sender, RoutedEventArgs e)
+        {
+            txtSelectedOption.Text = "Cohesion";
+            World.WorldStatus = WorldStatus.GlobalCohesion;
+            World.SetGlobalAction(World.WorldStatus);
+        }
+
+        private void btnAligment_Click(object sender, RoutedEventArgs e)
+        {
+            txtSelectedOption.Text = "Aligment";
+            World.WorldStatus = WorldStatus.GlobalAligment;
+            World.SetGlobalAction(World.WorldStatus);
         }
     }
 }

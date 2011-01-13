@@ -21,14 +21,14 @@ namespace SilverlightBoids
         private Vector2 _position;
         private Vector2 _velocity;
         private Vector2 _acceleration;
-        private int _mass = 1;
-        private int _maxForce = 1;
-        private int _maxSpeed = 1;
+        private int _mass = (new Random()).Next(20, 80);
+        private int _maxForce = 20;
+        private int _maxSpeed = 10;
         public Vector2 _steerForce;
 
         public IBoidAction Action { get; set; }
 
-
+        public Vector2 Velocity { get { return _velocity; } }
         public Vector2 Position
         {
             get

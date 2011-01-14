@@ -55,6 +55,10 @@
                     FontWeight="Black" Foreground="#FFCE1A1A" Height="24" 
                     HorizontalAlignment="Left" Name="btnAligment" Width="98" 
                     Click="btnAligment_Click" />
+                <Button Content="FCAS" FontSize="9" FontStretch="Normal" 
+                    FontWeight="Black" Foreground="#FFCE1A1A" Height="24" 
+                    HorizontalAlignment="Left" Name="btnFCAS" Width="98" 
+                    Click="btnFCAS_Click" />
             </StackPanel>
         </StackPanel>
         

@@ -29,6 +29,12 @@ namespace SilverlightBoids
         public IBoidAction Action { get; set; }
 
         public Vector2 Velocity { get { return _velocity; } }
+        public int MaxSpeed
+        {
+            get { return _maxSpeed; }
+            set { _maxSpeed = value; }
+        }
+
         public Vector2 Position
         {
             get

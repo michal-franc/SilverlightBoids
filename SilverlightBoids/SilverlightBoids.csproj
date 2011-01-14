@@ -88,6 +88,8 @@
     <Compile Include="Logic\BoidAction\BoidActionAvoidObject.cs" />
     <Compile Include="Logic\BoidAction\BoidActionCohesion.cs" />
     <Compile Include="Logic\BoidAction\BoidActionLookFor.cs" />
+    <Compile Include="Logic\BoidAction\BoidActionSeparate.cs" />
+    <Compile Include="Logic\BoidAction\BoidCombinedActionFCAS.cs" />
     <Compile Include="Logic\BoidAction\BoidGroupActionCohesion.cs" />
     <Compile Include="Logic\BoidAction\BoidActionFlee.cs" />
     <Compile Include="Logic\BoidAction\BoidActionFollowPath.cs" />
@@ -98,6 +100,7 @@
     <Compile Include="Logic\BoidAction\BoidActionWander.cs" />
     <Compile Include="Logic\BoidAction\IBoidAction.cs" />
     <Compile Include="Logic\BoidAction\BoidGroupAction.cs" />
+    <Compile Include="Logic\BoidAction\IBoidCombinedAction.cs" />
     <Compile Include="Logic\GameTimer.cs" />
     <Compile Include="Logic\Logger.cs" />
     <Compile Include="Logic\Settings.cs" />

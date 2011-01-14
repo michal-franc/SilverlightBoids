@@ -30,6 +30,7 @@ namespace SilverlightBoids.WorldLogic
         GlobalArrive,
         GlobalSeparate,
         GlobalAligment,
+        GlobalFCAS,
         AddBoid,
         LookForFood,
         AddingColony,
@@ -98,19 +99,19 @@ namespace SilverlightBoids.WorldLogic
         {
             foreach(BoidControl boid in this._boidList)
             {
-                SetBoidAction(boid, _boidList.First(), _boidList, status);
+                SetBoidAction(boid, _boidList, status);
             }
 
             foreach (var colony in _boidColonies)
             {
                 foreach (var boid in colony.Boids)
                 {
-                    SetBoidAction(boid, colony.Boids.First(), colony.Boids, status);
+                    SetBoidAction(boid, colony.Boids, status);
                 }
             }
         }
 
-        public void SetBoidAction(BoidControl boid, BoidControl leader, IList<BoidControl> boidList, WorldStatus status)
+        public void SetBoidAction(BoidControl boid, IList<BoidControl> boidList, WorldStatus status)
         {
             if (status == WorldStatus.GlobalFollowPath)
                 boid.Action = new BoidActionFollowPath(GlobalPath);
@@ -118,18 +119,23 @@ namespace SilverlightBoids.WorldLogic
                 boid.Action = new BoidActionFlee();
             else if (status == WorldStatus.GlobalSeek)
                 boid.Action = new BoidActionSeek();
-            else if (status == WorldStatus.GlobalWander)
+            else if (status == WorldStatus.GlobalWander || status == WorldLogic.WorldStatus.GlobalFCAS && boid.ID == 1)
+            {
                 boid.Action = new BoidActionWander();
+                boid.MaxSpeed = 2;
+            }
             else if (status == WorldLogic.WorldStatus.LookForFood)
                 boid.Action = new BoidActionLookFor(new WorldObjectFood(1), this);
             else if (status == WorldLogic.WorldStatus.GlobalCohesion)
-                boid.Action = new BoidActionCohesion(leader, boidList, 30);
+                boid.Action = new BoidActionCohesion(boid, boidList, 100);
             else if (status == WorldStatus.GlobalArrive)
                 boid.Action = new BoidActionArrive();
             else if (status == WorldStatus.GlobalSeparate)
-                boid.Action = new BoidActionSeparation(this, boid.ID);
+                boid.Action = new BoidActionSeparate(boid, boidList);
             else if (status == WorldStatus.GlobalAligment)
-                boid.Action = new BoidActionAligment(leader, boidList);
+                boid.Action = new BoidActionAligment(boid, boidList);
+            else if (status == WorldStatus.GlobalFCAS)
+                boid.Action = new BoidCombinedActionFCAS(boid, boidList, _boidList, 100);
         }
 
         public void AddColony()
@@ -155,7 +161,7 @@ namespace SilverlightBoids.WorldLogic
             BoidColony newColony = new BoidColony(color, new Vector2(placeOfColony), this);
             _boidColonies.Add(newColony);
             Map.Children.Add(newColony);
-            newColony.ProduceBoids(TimeSpan.FromSeconds(1));
+            newColony.ProduceBoids(TimeSpan.FromMilliseconds(500), 100);
         }
 
         public void AddRockObject(Point placeOnMap)

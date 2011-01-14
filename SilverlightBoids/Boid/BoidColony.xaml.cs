@@ -40,6 +40,8 @@ namespace SilverlightBoids.Boid
         }
 
         public IList<BoidControl> Boids { get; set; }
+        public int BoidsCountLimit { get; private set; }
+        public bool IsBoidsCountLimited { get; private set; }
 
         public Color ColonyColor { get; set; }
 
@@ -47,6 +49,7 @@ namespace SilverlightBoids.Boid
         {
             InitializeComponent();
 
+            IsBoidsCountLimited = false;
             Boids = new List<BoidControl>();
             Position = position;
             ColonyColor = color;
@@ -79,19 +82,21 @@ namespace SilverlightBoids.Boid
             BoidControl boid = new BoidControl(Position, GetNewId(), ColonyColor);
             Boids.Add(boid);
             World.Map.Children.Add(boid);
-            World.SetBoidAction(boid, Boids.First(), Boids, World.WorldStatus);
+            World.SetBoidAction(boid, Boids, World.WorldStatus);
+            if (IsBoidsCountLimited && Boids.Count >= BoidsCountLimit)
+                (sender as DispatcherTimer).Stop();
             //TextBlock tb = World.Map.FindName("debugTextBlock") as TextBlock;
             //tb.Text = World.Map.Children.Count.ToString();
         }
 
         public void ProduceBoids(TimeSpan interval, int numberOfBoids)
         {
-            for (int i = 0; i < numberOfBoids; i++)
-            {
-                BoidControl boid = new BoidControl(Position, GetNewId(), ColonyColor);
-                Boids.Add(boid);
-                World.Map.Children.Add(boid);
-            }
+            IsBoidsCountLimited = true;
+            BoidsCountLimit = numberOfBoids;
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = interval;
+            timer.Tick += new EventHandler(GiveBirthToANiceBoid);
+            timer.Start();
         }
     }
 }

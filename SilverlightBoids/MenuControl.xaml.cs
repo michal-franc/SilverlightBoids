@@ -178,5 +178,12 @@ namespace SilverlightBoids
             World.WorldStatus = WorldStatus.GlobalAligment;
             World.SetGlobalAction(World.WorldStatus);
         }
+
+        private void btnFCAS_Click(object sender, RoutedEventArgs e)
+        {
+            txtSelectedOption.Text = "FCAS";
+            World.WorldStatus = WorldStatus.GlobalFCAS;
+            World.SetGlobalAction(World.WorldStatus);
+        }
     }
 }

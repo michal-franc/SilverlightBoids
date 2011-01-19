@@ -27,10 +27,11 @@ namespace SilverlightBoids.Logic.Styles
                 _position = value;
                 if (value.X >= 0 && value.Y >= 0)
                 {
-                    this.SetValue(Canvas.LeftProperty, (double)value.X-(Settings.FleeRadius/2));
+                    this.SetValue(Canvas.LeftProperty, (double)value.X - (Settings.FleeRadius / 2));
                     this.SetValue(Canvas.TopProperty, (double)value.Y - (Settings.FleeRadius / 2));
                 }
             }
+            
         }
 
         public FleeEllipse()

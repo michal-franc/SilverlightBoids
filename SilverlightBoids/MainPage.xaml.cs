@@ -40,16 +40,17 @@ namespace SilverlightBoids
 
 
 
-            //for (int i = 0; i < 100; i++)
-            //{
-            //    _world.AddWorldObject(new WorldObjectFood(2));
-            //}
+            for (int i = 0; i < 100; i++)
+            {
+                _world.AddWorldObject(new WorldObjectFood(2));
+            }
 
 
             //Parameters of starting simulation
-            //for (int i = 0; i < 100; i++)
-            //{
-            //    int id = _world.AddBoid();
+            for (int i = 0; i < 100; i++)
+            {
+                int id = _world.AddBoid();
+            }
 
             //    //if (i == 0)
             //    //{
@@ -66,7 +67,7 @@ namespace SilverlightBoids
             //}
 
 
-            //_world.SetGlobalAction(WorldStatus.LookForFood);
+            _world.SetGlobalAction(WorldStatus.LookForFood);
             //_world.SetGlobalAction(WorldStatus.GlobalCohesion);
             //_world.SetGlobalAction(WorldStatus.GlobalWander);
 

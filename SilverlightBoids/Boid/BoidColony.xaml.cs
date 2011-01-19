@@ -15,6 +15,20 @@ namespace SilverlightBoids.Boid
 {
     public partial class BoidColony : UserControl
     {
+        private int _food = 100;
+
+        public int Food
+        {
+            get
+            {
+                return _food;
+            }
+            set
+            {
+                _food = value;
+            }
+        }
+
         private Vector2 _position;
 
         public Vector2 Position

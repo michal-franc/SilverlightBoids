@@ -21,13 +21,19 @@ namespace SilverlightBoids
         private Vector2 _position;
         private Vector2 _velocity;
         private Vector2 _acceleration;
-        private int _mass = 1;
-        private int _maxForce = 1;
-        private int _maxSpeed = 1;
+        private int _mass = (new Random()).Next(20, 80);
+        private int _maxForce = 20;
+        private int _maxSpeed = 10;
         public Vector2 _steerForce;
 
         public IBoidAction Action { get; set; }
 
+        public Vector2 Velocity { get { return _velocity; } }
+        public int MaxSpeed
+        {
+            get { return _maxSpeed; }
+            set { _maxSpeed = value; }
+        }
 
         public Vector2 Position
         {
@@ -47,6 +53,11 @@ namespace SilverlightBoids
         }
 
         public BoidControl(Vector2 startPoint,int Id)
+            : this(startPoint, Id, Colors.Yellow)
+        {
+        }
+
+        public BoidControl(Vector2 startPoint, int Id, Color boidColor)
         {
             _velocity = Vector2.Zero;
             _acceleration = Vector2.Zero;
@@ -54,6 +65,7 @@ namespace SilverlightBoids
             ID = Id;
             Action = new BoidActionWander();
             InitializeComponent();
+            boidEllipse.Fill = new SolidColorBrush(boidColor);
         }
 
         public void Go(Vector2 dest, WorldLogic.World world)
@@ -81,7 +93,7 @@ namespace SilverlightBoids
             sb.AppendLine(String.Format("Velocity : {0}", this._velocity));
             sb.AppendLine(String.Format("Position : {0}", this.Position));
             sb.AppendLine();
-
+            
             return sb;
         }
 

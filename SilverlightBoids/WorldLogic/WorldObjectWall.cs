@@ -11,9 +11,9 @@ using System.Windows.Shapes;
 
 namespace SilverlightBoids.WorldLogic
 {
-    public class WorldObjectWall : WorldObject
+    public class WorldObjectWall : IWorldObject
     {
-        public override SolidColorBrush ObjectColor
+        public SolidColorBrush ObjectColor
         {
             get
             {
@@ -21,12 +21,17 @@ namespace SilverlightBoids.WorldLogic
             }
         }
 
-        public override WorldObjectType ObjectType
+        public WorldObjectType ObjectType
         {
             get
             {
                 return WorldObjectType.Square;
             }
+        }
+
+        public int Size
+        {
+            get { throw new NotImplementedException(); }
         }
     }
 }

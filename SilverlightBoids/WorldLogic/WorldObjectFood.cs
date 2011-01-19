@@ -11,11 +11,11 @@ using System.Windows.Shapes;
 
 namespace SilverlightBoids.WorldLogic
 {
-    public class WorldObjectFood : WorldObject
+    public class WorldObjectFood : IWorldObject
     {
 
         private int _size;
-        public override int Size
+        public int Size
         {
             get
             {
@@ -28,7 +28,7 @@ namespace SilverlightBoids.WorldLogic
             _size = size;
         }
 
-        public override SolidColorBrush ObjectColor
+        public SolidColorBrush ObjectColor
         {
             get
             {
@@ -36,7 +36,7 @@ namespace SilverlightBoids.WorldLogic
             }
         }
 
-        public override WorldObjectType ObjectType
+        public WorldObjectType ObjectType
         {
             get
             {

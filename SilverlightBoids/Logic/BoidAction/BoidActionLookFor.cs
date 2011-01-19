@@ -18,10 +18,10 @@ namespace SilverlightBoids.Logic.BoidAction
         private BoidActionNoAction _noAction = new BoidActionNoAction();
         private World _world;
 
-        private WorldObject _objectToLookFor;
+        private IWorldObject _objectToLookFor;
         private int _radius = 10;
 
-        public BoidActionLookFor(WorldObject objectToLook,World world)
+        public BoidActionLookFor(IWorldObject objectToLook,World world)
         {
             _objectToLookFor = objectToLook;
             _world = world;

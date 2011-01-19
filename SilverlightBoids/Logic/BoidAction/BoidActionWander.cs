@@ -58,8 +58,8 @@ namespace SilverlightBoids.Logic
 
         private Vector2 RandomMove(Vector2 location,Vector2 velocity,int maxSpeed)
         {
-            int oldX = Convert.ToInt32(location.X);
-            int oldY = Convert.ToInt32(location.Y);
+            int oldX = (int)Convert.ToDouble(location.X);
+            int oldY = (int)Convert.ToDouble(location.Y);
             
             int newX = generator.Next(oldX - _wanderFov, oldX + _wanderFov);
             int newY = generator.Next(oldY - _wanderFov, oldY + _wanderFov);

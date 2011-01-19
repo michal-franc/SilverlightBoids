@@ -8,7 +8,7 @@
     d:DesignHeight="500" d:DesignWidth="500" xmlns:my="clr-namespace:SilverlightBoids">
     <Grid  Background="DarkGray">
         <Grid.RowDefinitions>
-            <RowDefinition Height="9*"></RowDefinition>
+            <RowDefinition Height="4*"></RowDefinition>
             <RowDefinition Height="1*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -20,7 +20,9 @@
         </ScrollViewer>
         <Border Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Width="800" Height="500"  BorderBrush="Red" BorderThickness="2">
         <Canvas Name="MainCanvas" Background="Black">
-         </Canvas>
+                <TextBlock x:Name="debugTextBlock" Foreground="White" Text="TESTING..." 
+                           VerticalAlignment="Top" HorizontalAlignment="Left"/>
+            </Canvas>
         </Border>
         <my:MenuControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="menuControl1" />
     </Grid>

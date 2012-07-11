@@ -4,6 +4,7 @@
 *.Publish.xml
 *.png
 *.dotcover
+*.xap
 
 obj
 bin

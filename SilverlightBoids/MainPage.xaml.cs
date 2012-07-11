@@ -24,8 +24,6 @@
 
     public partial class MainPage : UserControl
     {
-        public Logger Logger = LogManager.GetCurrentClassLogger();
-
         private readonly World _world;
         private readonly GameTimer _timer;
         private readonly FleeEllipse _fleeEllipse = new FleeEllipse();
@@ -34,8 +32,7 @@
 
         public MainPage()
         {
-            var Logger = new LoggingService.LoggingServiceClient();
-            Logger.LogMessageAsync("Silverlight application started.");
+            WCFLogger.Info("Application started {0}",DateTime.Now.ToShortDateString());
 
             this.InitializeComponent();
 

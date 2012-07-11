@@ -45,8 +45,6 @@ namespace SilverlightBoids
         /// </summary>
         private void btnAddBoid_Click(object sender, RoutedEventArgs e)
         {
-            txtSelectedOption.Text = "Add Boid";
-
             if (World.WorldStatus != WorldStatus.AddBoid)
             {
                 World.Map.MouseLeftButtonDown += new MouseButtonEventHandler(grid_MouseLeftButtonDown);
@@ -61,14 +59,12 @@ namespace SilverlightBoids
 
         private void btnFlee_Click(object sender, RoutedEventArgs e)
         {
-            txtSelectedOption.Text = "Flee";
             World.SetGlobalAction(WorldStatus.GlobalFlee);
             World.WorldStatus = WorldStatus.GlobalFlee;
         }
 
         private void btnSeek_Click(object sender, RoutedEventArgs e)
         {
-            txtSelectedOption.Text = "Seek";
             World.SetGlobalAction(WorldStatus.GlobalSeek);
             World.WorldStatus = WorldStatus.GlobalSeek;
         }
@@ -79,7 +75,6 @@ namespace SilverlightBoids
         /// </summary>
         private void btnFollowPath_Click(object sender, RoutedEventArgs e)
         {
-            txtSelectedOption.Text = "Follow Path";
             if (World.WorldStatus != WorldStatus.GlobalFollowPath)
             {
                 _globalPath = new List<Point>();
@@ -116,8 +111,6 @@ namespace SilverlightBoids
 
         private void AddColony_Checked(object sender, RoutedEventArgs e)
         {
-            txtSelectedOption.Text = "Add colony...";
-
             //World.WorldStatus = WorldStatus.AddingColony;
             World.Map.MouseLeftButtonDown += new MouseButtonEventHandler(Map_MouseLeftButtonDown);
             
@@ -126,8 +119,6 @@ namespace SilverlightBoids
 
         private void AddColony_Unchecked(object sender, RoutedEventArgs e)
         {
-            txtSelectedOption.Text = "Collonies added";
-
             //World.WorldStatus = WorldStatus.None;
             World.Map.MouseLeftButtonDown -= new MouseButtonEventHandler(Map_MouseLeftButtonDown);
         }
@@ -139,16 +130,12 @@ namespace SilverlightBoids
 
         private void AddRockObject_Checked(object sender, RoutedEventArgs e)
         {
-            txtSelectedOption.Text = "Add rock(s)...";
-
             //World.WorldStatus = WorldStatus.AddingRockObject;
             World.Map.MouseLeftButtonDown += new MouseButtonEventHandler(Map_MouseLeftButtonDown_AddingNewRock);
         }
 
         private void AddRockObject_Unchecked(object sender, RoutedEventArgs e)
         {
-            txtSelectedOption.Text = "Rocks added.";
-            
             //World.WorldStatus = WorldStatus.None;
             World.Map.MouseLeftButtonDown -= new MouseButtonEventHandler(Map_MouseLeftButtonDown_AddingNewRock);
         }
@@ -160,35 +147,30 @@ namespace SilverlightBoids
 
         private void btnArrive_Click(object sender, RoutedEventArgs e)
         {
-            txtSelectedOption.Text = "Arrive";
             World.WorldStatus = WorldStatus.GlobalArrive;
             World.SetGlobalAction(World.WorldStatus);
         }
 
         private void btnSeparate_Click(object sender, RoutedEventArgs e)
         {
-            txtSelectedOption.Text = "Separate";
             World.WorldStatus = WorldStatus.GlobalSeparate;
             World.SetGlobalAction(World.WorldStatus);
         }
 
         private void btnCohesion_Click(object sender, RoutedEventArgs e)
         {
-            txtSelectedOption.Text = "Cohesion";
             World.WorldStatus = WorldStatus.GlobalCohesion;
             World.SetGlobalAction(World.WorldStatus);
         }
 
         private void btnAligment_Click(object sender, RoutedEventArgs e)
         {
-            txtSelectedOption.Text = "Aligment";
             World.WorldStatus = WorldStatus.GlobalAligment;
             World.SetGlobalAction(World.WorldStatus);
         }
 
         private void btnFCAS_Click(object sender, RoutedEventArgs e)
         {
-            txtSelectedOption.Text = "FCAS";
             World.WorldStatus = WorldStatus.GlobalFCAS;
             World.SetGlobalAction(World.WorldStatus);
         }

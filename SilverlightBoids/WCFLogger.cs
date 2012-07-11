@@ -15,6 +15,24 @@ namespace SilverlightBoids
 
     public static class WCFLogger
     {
+        public static string ExtractInnerException(Exception ex)
+        {
+            var innerException = String.Empty;
+            if (ex.InnerException != null)
+                innerException = ExtractInnerException(ex.InnerException);
+
+            return String.Format("{0} \r\n   {1}", ex.Message, innerException);
+        }
+
+        public static void ErrorExceptionsWithInner(string message, Exception ex)
+        {
+            var innerExceptions = String.Empty;
+            if (ex.InnerException != null)
+                innerExceptions = ExtractInnerException(ex.InnerException);
+
+            logClient.ErrorAsync(String.Format("{0} Exception\r\n {1} \r\n--------------\r\n {2}", message, ex.Message, innerExceptions));
+        }
+
         public static LoggingServiceClient logClient = new LoggingServiceClient();
 
 

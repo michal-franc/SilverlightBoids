@@ -24,27 +24,40 @@
 
     public partial class MainPage : UserControl
     {
-        private readonly World _world;
-        private readonly GameTimer _timer;
+        private  World _world;
+        private  GameTimer _timer;
         private readonly FleeEllipse _fleeEllipse = new FleeEllipse();
+
+        private bool once = false;
 
         private Point _mousePosition = new Point(0, 0);
 
         public MainPage()
         {
-            WCFLogger.Info("Application started {0}",DateTime.Now.ToShortDateString());
-
             this.InitializeComponent();
 
-            this.MainCanvas.Children.Add(this._fleeEllipse);
+            MainCanvas.LayoutUpdated += (sender, args) =>
+                {
+                    if (!once)
+                    {
+                        WCFLogger.Info("Application started {0}", DateTime.Now.ToShortDateString());
 
-            this._world = new World(MainCanvas);
+                        this.MainCanvas.Children.Add(this._fleeEllipse);
+                        this._world = new World(MainCanvas);
 
-            menuControl.World = this._world;
+                        menuControl.World = this._world;
 
-            this._timer = new GameTimer(this.TimerCallback);
+                        this._timer = new GameTimer(this.TimerCallback);
 
-            MainCanvas.MouseMove += this.MainPage_MouseMove;       
+                        MainCanvas.MouseMove += this.MainPage_MouseMove;
+                        once = true;
+                    }
+                    else
+                    {
+                        _world.WorldHeight = MainCanvas.ActualHeight;
+                        _world.WorldWidth = MainCanvas.ActualWidth;
+                    }
+                };
         }
 
         public void TimerCallback(object sender, EventArgs e)

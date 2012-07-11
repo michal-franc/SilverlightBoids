@@ -6,9 +6,9 @@
     mc:Ignorable="d"
              Height="Auto"
              Width="Auto" >
-    
-    <Grid x:Name="LayoutRoot" Background="DarkGray">
-        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+
+    <Grid x:Name="LayoutRoot" Background="#164b6a">
+        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Top" >
             <StackPanel>
                 <ToggleButton x:Name="AddColony" Content="Add Colony"
                       Checked="AddColony_Checked" Unchecked="AddColony_Unchecked"
@@ -61,9 +61,5 @@
                     Click="btnFCAS_Click" />
             </StackPanel>
         </StackPanel>
-        
-
-        <TextBlock Height="40" HorizontalAlignment="Left" Foreground="Yellow" Margin="839,22,0,0" Name="txtSelectedOption" Text="TextBlock" VerticalAlignment="Top" Width="127" FontSize="14" FontWeight="Bold" />
-        
     </Grid>
 </UserControl>

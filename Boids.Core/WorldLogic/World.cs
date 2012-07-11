@@ -58,8 +58,8 @@ namespace Boids.Core.WorldLogic
         {
             WorldStatus = WorldStatus.None;
             Map = map;
-            WorldHeight = 800;
-            WorldWidth =  500;
+            WorldHeight = map.ActualHeight;
+            WorldWidth = map.ActualWidth;
         }
         #endregion
 

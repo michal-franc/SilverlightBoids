@@ -64,7 +64,7 @@ namespace Boids.Core
                 Acceleration = SteerForce / _mass;
                 Velocity = Vector2.Truncate(Velocity + Acceleration, _maxSpeed);
 
-                Position = CheckBoundaries(Vector2.Add(Velocity, Position), (int)world.WorldHeight, (int)world.WorldWidth);
+                Position = CheckBoundaries(Vector2.Add(Velocity, Position), (int)world.WorldWidth, (int)world.WorldHeight);
             }
         }
 

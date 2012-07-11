@@ -73,42 +73,16 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Boid\BoidAi.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Boid\BoidColony.xaml.cs">
-      <DependentUpon>BoidColony.xaml</DependentUpon>
+    <Compile Include="Boid\BoidColonyControl.xaml.cs">
+      <DependentUpon>BoidColonyControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Boid\BoidControl.xaml.cs">
       <DependentUpon>BoidControl.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Logic\BoidAction\BoidActionAligment.cs" />
-    <Compile Include="Logic\BoidAction\BoidActionArrive.cs" />
-    <Compile Include="Logic\BoidAction\BoidActionAvoidObject.cs" />
-    <Compile Include="Logic\BoidAction\BoidActionCohesion.cs" />
-    <Compile Include="Logic\BoidAction\BoidActionLookFor.cs" />
-    <Compile Include="Logic\BoidAction\BoidActionSeparate.cs" />
-    <Compile Include="Logic\BoidAction\BoidCombinedActionFCAS.cs" />
-    <Compile Include="Logic\BoidAction\BoidGroupActionCohesion.cs" />
-    <Compile Include="Logic\BoidAction\BoidActionFlee.cs" />
-    <Compile Include="Logic\BoidAction\BoidActionFollowPath.cs" />
-    <Compile Include="Logic\BoidAction\BoidActionNoAction.cs" />
-    <Compile Include="Logic\BoidAction\BoidActionSeek.cs" />
-    <Compile Include="Logic\BoidAction\BoidActionSeparation.cs" />
-    <Compile Include="Logic\BoidAction\BoidActionSimple.cs" />
-    <Compile Include="Logic\BoidAction\BoidActionWander.cs" />
-    <Compile Include="Logic\BoidAction\IBoidAction.cs" />
-    <Compile Include="Logic\BoidAction\BoidGroupAction.cs" />
-    <Compile Include="Logic\BoidAction\IBoidCombinedAction.cs" />
-    <Compile Include="Logic\GameTimer.cs" />
-    <Compile Include="Logic\Logger.cs" />
-    <Compile Include="Logic\Settings.cs" />
-    <Compile Include="Logic\Styles\Colors.cs" />
-    <Compile Include="Logic\Styles\FleeEllipse.xaml.cs">
+    <Compile Include="FleeEllipse.xaml.cs">
       <DependentUpon>FleeEllipse.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Logic\Vector2.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -116,14 +90,10 @@
       <DependentUpon>MenuControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WorldLogic\RockObject.xaml.cs">
+    <Compile Include="RockObject.xaml.cs">
       <DependentUpon>RockObject.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WorldLogic\World.cs" />
-    <Compile Include="WorldLogic\IWorldObject.cs" />
-    <Compile Include="WorldLogic\WorldObjectFood.cs" />
-    <Compile Include="WorldLogic\WorldObjectWall.cs" />
-    <Compile Include="WorldLogic\WorldObjectContainer.xaml.cs">
+    <Compile Include="WorldObjectContainer.xaml.cs">
       <DependentUpon>WorldObjectContainer.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -132,7 +102,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
-    <Page Include="Boid\BoidColony.xaml">
+    <Page Include="Boid\BoidColonyControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -140,7 +110,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Logic\Styles\FleeEllipse.xaml">
+    <Page Include="FleeEllipse.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -152,17 +122,26 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WorldLogic\RockObject.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="RockObject.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
-    <Page Include="WorldLogic\WorldObjectContainer.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="WorldObjectContainer.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AppManifest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Boids.Core\Boids.Core.csproj">
+      <Project>{75F778A7-7D79-44C1-B1CA-96505F4DE4E0}</Project>
+      <Name>Boids.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Logic\Styles\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

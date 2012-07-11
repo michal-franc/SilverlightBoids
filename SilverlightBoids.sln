@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SilverlightBoids", "Silverl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SilverlightBoids.Web", "SilverlightBoids.Web\SilverlightBoids.Web.csproj", "{70856A67-7ECE-4904-8E56-C4FDEACA0CDC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boids.Core", "Boids.Core\Boids.Core.csproj", "{75F778A7-7D79-44C1-B1CA-96505F4DE4E0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{70856A67-7ECE-4904-8E56-C4FDEACA0CDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70856A67-7ECE-4904-8E56-C4FDEACA0CDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70856A67-7ECE-4904-8E56-C4FDEACA0CDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75F778A7-7D79-44C1-B1CA-96505F4DE4E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75F778A7-7D79-44C1-B1CA-96505F4DE4E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75F778A7-7D79-44C1-B1CA-96505F4DE4E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75F778A7-7D79-44C1-B1CA-96505F4DE4E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

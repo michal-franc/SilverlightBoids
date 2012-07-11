@@ -24,6 +24,6 @@
                            VerticalAlignment="Top" HorizontalAlignment="Left"/>
             </Canvas>
         </Border>
-        <my:MenuControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="menuControl1" />
+        <my:MenuControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="menuControl" />
     </Grid>
 </UserControl>

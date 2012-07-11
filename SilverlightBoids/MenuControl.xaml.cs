@@ -10,14 +10,17 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using SilverlightBoids.Logic;
-using SilverlightBoids.WorldLogic;
 
 namespace SilverlightBoids
 {
+    using Boids.Core.WorldLogic;
+
+    using SilverlightBoids.Boid;
+
     public partial class MenuControl : UserControl
     {
         private IList<Point> _globalPath;
-        public WorldLogic.World World { get; set; }
+        public World World { get; set; }
         public MenuControl()
         {
             InitializeComponent();
@@ -25,7 +28,16 @@ namespace SilverlightBoids
 
         private void btnAddBoidRandom_Click(object sender, RoutedEventArgs e)
         {
-            World.AddBoid();
+            var newBoid = World.CreateBoid();
+            World.Map.Children.Add(new BoidControl(newBoid));
+        }
+
+        void grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            UIElement element = sender as UIElement;
+            var newBoid = World.CreateBoid(e.GetPosition(element));
+            World.Map.Children.Add(new BoidControl(newBoid));
+
         }
 
         /// <summary>
@@ -83,11 +95,6 @@ namespace SilverlightBoids
             }
         }
 
-        void grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            UIElement element = sender as UIElement;
-            World.AddBoid(e.GetPosition(element));
-        }
 
         void grid1_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -127,7 +134,7 @@ namespace SilverlightBoids
 
         private void Map_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            World.AddColony(e.GetPosition(World.Map), Logic.Styles.Colors.GetColor());
+            //World.AddColony(e.GetPosition(World.Map), Logic.Styles.Colors.GetColor());
         }
 
         private void AddRockObject_Checked(object sender, RoutedEventArgs e)
@@ -148,7 +155,7 @@ namespace SilverlightBoids
 
         private void Map_MouseLeftButtonDown_AddingNewRock(object sender, MouseButtonEventArgs e)
         {
-            World.AddRockObject(e.GetPosition(World.Map));
+            //World.AddRockObject(e.GetPosition(World.Map));
         }
 
         private void btnArrive_Click(object sender, RoutedEventArgs e)

@@ -2,6 +2,9 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SilverlightBoids", "SilverlightBoids\SilverlightBoids.csproj", "{D452ED03-D212-4817-B8B4-01334584CAE3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{70856A67-7ECE-4904-8E56-C4FDEACA0CDC} = {70856A67-7ECE-4904-8E56-C4FDEACA0CDC}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SilverlightBoids.Web", "SilverlightBoids.Web\SilverlightBoids.Web.csproj", "{70856A67-7ECE-4904-8E56-C4FDEACA0CDC}"
 EndProject

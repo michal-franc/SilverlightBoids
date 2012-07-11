@@ -16,12 +16,16 @@
     using Boids.Core;
     using Boids.Core.WorldLogic;
 
+    using NLog;
+
     using SilverlightBoids.Boid;
     using SilverlightBoids.Logic;
     using SilverlightBoids.Logic.Styles;
 
     public partial class MainPage : UserControl
     {
+        public Logger Logger = LogManager.GetCurrentClassLogger();
+
         private readonly World _world;
         private readonly GameTimer _timer;
         private readonly FleeEllipse _fleeEllipse = new FleeEllipse();
@@ -30,6 +34,9 @@
 
         public MainPage()
         {
+            var Logger = new LoggingService.LoggingServiceClient();
+            Logger.LogMessageAsync("Silverlight application started.");
+
             this.InitializeComponent();
 
             this.MainCanvas.Children.Add(this._fleeEllipse);
@@ -37,8 +44,6 @@
             this._world = new World(MainCanvas);
 
             menuControl.World = this._world;
-
-            Logger.LogDestination = this.txtBlockLog;
 
             this._timer = new GameTimer(this.TimerCallback);
 

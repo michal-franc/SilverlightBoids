@@ -4,16 +4,13 @@ namespace Boids.Core.BoidAction
 
     public class BoidActionAligment : IBoidAction
     {
-        private Boid _leader;
-        //private BoidActionSeek _seek;
-        private IList<Boid> _boidList;
-
-        //private int _aligmentRadius = 10;
+        private Boid leader;
+        private IList<Boid> boidList;
 
         public BoidActionAligment(Boid packLeader, IList<Boid> boidList)
         {
-            _leader = packLeader;
-            _boidList = boidList;
+            this.leader = packLeader;
+            this.boidList = boidList;
         }
 
         public Vector2 DoAction(Vector2 dest, Vector2 location, Vector2 velocity, int maxSpeed)
@@ -21,13 +18,13 @@ namespace Boids.Core.BoidAction
             int j = 0;
             Vector2 averageDirection = new Vector2(0);
             Vector2 distance = new Vector2(0);
-            for (int i = 0; i < _boidList.Count; i++)
+            for (int i = 0; i < this.boidList.Count; i++)
             {
-                distance = Vector2.Subtract(location, _boidList[i].Position);
-                if (Vector2.Length(distance) < 100 && _boidList[i] != _leader)
+                distance = Vector2.Subtract(location, this.boidList[i].Position);
+                if (Vector2.Length(distance) < 100 && this.boidList[i] != this.leader)
                 {
                     j++;
-                    averageDirection = Vector2.Add(averageDirection, _boidList[i].Velocity);
+                    averageDirection = Vector2.Add(averageDirection, this.boidList[i].Velocity);
                 }
             }
             if (j == 0)

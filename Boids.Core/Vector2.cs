@@ -28,23 +28,13 @@ SOFTWARE.
 */
 #endregion License
 
-using System;
-using System.Text;
-
 namespace Boids.Core
 {
+    using System;
+    using System.Text;
+
     public struct Vector2 : IEquatable<Vector2>
     {
-        #region Private Fields
-
-        private static Vector2 zeroVector = new Vector2(0f, 0f);
-        private static Vector2 unitVector = new Vector2(1f, 1f);
-        private static Vector2 unitXVector = new Vector2(1f, 0f);
-        private static Vector2 unitYVector = new Vector2(0f, 1f);
-
-        #endregion Private Fields
-
-
         #region Public Fields
 
         public float X;
@@ -52,43 +42,15 @@ namespace Boids.Core
 
         #endregion Public Fields
 
+        #region Private Fields
 
-        #region Properties
+        private static readonly Vector2 UnitVector = new Vector2(1f, 1f);
+        private static readonly Vector2 UnitXVector = new Vector2(1f, 0f);
+        private static readonly Vector2 UnitYVector = new Vector2(0f, 1f);
 
-        public static Vector2 Zero
-        {
-            get { return zeroVector; }
-        }
+        private static Vector2 zeroVector = new Vector2(0f, 0f);
 
-        public static Vector2 One
-        {
-            get { return unitVector; }
-        }
-
-        public static Vector2 UnitX
-        {
-            get { return unitXVector; }
-        }
-
-        public static Vector2 UnitY
-        {
-            get { return unitYVector; }
-        }
-
-        public bool IsNan
-        {
-            get
-            {
-                if (float.IsNaN(this.X) || float.IsNaN(this.Y))
-                    return true;
-                else
-                    return false;
-            }
-        }
-
-
-        #endregion Properties
-
+        #endregion Private Fields
 
         #region Constructors
 
@@ -133,6 +95,119 @@ namespace Boids.Core
 
         #endregion Constructors
 
+        #region Properties
+
+        public static Vector2 Zero
+        {
+            get { return zeroVector; }
+        }
+
+        public static Vector2 One
+        {
+            get { return UnitVector; }
+        }
+
+        public static Vector2 UnitX
+        {
+            get { return UnitXVector; }
+        }
+
+        public static Vector2 UnitY
+        {
+            get { return UnitYVector; }
+        }
+
+        public bool IsNan
+        {
+            get
+            {
+                return float.IsNaN(this.X) || float.IsNaN(this.Y);
+            }
+        }
+
+        public bool IsZero
+        {
+            get
+            {
+                return Math.Abs(this.X - 0) < double.Epsilon
+                    && Math.Abs(this.Y - 0) < double.Epsilon;
+            }
+        }
+
+        #endregion Properties
+
+        #region Operators
+
+        public static Vector2 operator -(Vector2 value)
+        {
+            value.X = -value.X;
+            value.Y = -value.Y;
+            return value;
+        }
+
+        public static bool operator ==(Vector2 value1, Vector2 value2)
+        {
+            return Math.Abs(value1.X - value2.X) < double.Epsilon &&
+                   Math.Abs(value1.Y - value2.Y) < double.Epsilon;
+        }
+
+        public static bool operator !=(Vector2 value1, Vector2 value2)
+        {
+            return Math.Abs(value1.X - value2.X) > double.Epsilon || 
+                Math.Abs(value1.Y - value2.Y) > double.Epsilon;
+        }
+
+        public static Vector2 operator +(Vector2 value1, Vector2 value2)
+        {
+            value1.X += value2.X;
+            value1.Y += value2.Y;
+            return value1;
+        }
+
+        public static Vector2 operator -(Vector2 value1, Vector2 value2)
+        {
+            value1.X -= value2.X;
+            value1.Y -= value2.Y;
+            return value1;
+        }
+
+        public static Vector2 operator *(Vector2 value1, Vector2 value2)
+        {
+            value1.X *= value2.X;
+            value1.Y *= value2.Y;
+            return value1;
+        }
+
+        public static Vector2 operator *(Vector2 value, float scaleFactor)
+        {
+            value.X *= scaleFactor;
+            value.Y *= scaleFactor;
+            return value;
+        }
+
+        public static Vector2 operator *(float scaleFactor, Vector2 value)
+        {
+            value.X *= scaleFactor;
+            value.Y *= scaleFactor;
+            return value;
+        }
+
+        public static Vector2 operator /(Vector2 value1, Vector2 value2)
+        {
+            value1.X /= value2.X;
+            value1.Y /= value2.Y;
+            return value1;
+        }
+
+        public static Vector2 operator /(Vector2 value1, float divider)
+        {
+            float factor = 1 / divider;
+            value1.X *= factor;
+            value1.Y *= factor;
+            return value1;
+        }
+
+        #endregion Operators
 
         #region Public Methods
 
@@ -162,129 +237,6 @@ namespace Boids.Core
             result.X = value1.X + value2.X;
             result.Y = value1.Y + value2.Y;
         }
-
-        /// <summary>
-        /// Returns float precison distanve between two vectors
-        /// </summary>
-        /// <param name="value1">
-        /// A <see cref="Vector2"/>
-        /// </param>
-        /// <param name="value2">
-        /// A <see cref="Vector2"/>
-        /// </param>
-        /// <returns>
-        /// A <see cref="float"/>
-        /// </returns>
-        public static float Distance(Vector2 value1, Vector2 value2)
-        {
-            float result;
-            DistanceSquared(ref value1, ref value2, out result);
-            return (float)Math.Sqrt(result);
-        }
-
-
-        public static void Distance(ref Vector2 value1, ref Vector2 value2, out float result)
-        {
-            DistanceSquared(ref value1, ref value2, out result);
-            result = (float)Math.Sqrt(result);
-        }
-
-        public static float DistanceSquared(Vector2 value1, Vector2 value2)
-        {
-            float result;
-            DistanceSquared(ref value1, ref value2, out result);
-            return result;
-        }
-
-        public static void DistanceSquared(ref Vector2 value1, ref Vector2 value2, out float result)
-        {
-            result = (value1.X - value2.X) * (value1.X - value2.X) + (value1.Y - value2.Y) * (value1.Y - value2.Y);
-        }
-
-        /// <summary>
-        /// Devide first vector with the secund vector
-        /// </summary>
-        /// <param name="value1">
-        /// A <see cref="Vector2"/>
-        /// </param>
-        /// <param name="value2">
-        /// A <see cref="Vector2"/>
-        /// </param>
-        /// <returns>
-        /// A <see cref="Vector2"/>
-        /// </returns>
-        public static Vector2 Divide(Vector2 value1, Vector2 value2)
-        {
-            value1.X /= value2.X;
-            value1.Y /= value2.Y;
-            return value1;
-        }
-
-        public static void Divide(ref Vector2 value1, ref Vector2 value2, out Vector2 result)
-        {
-            result.X = value1.X / value2.X;
-            result.Y = value1.Y / value2.Y;
-        }
-
-        public static Vector2 Divide(Vector2 value1, float divider)
-        {
-            float factor = 1 / divider;
-            value1.X *= factor;
-            value1.Y *= factor;
-            return value1;
-        }
-
-        public static double Length(Vector2 v1)
-        {
-            return Math.Sqrt(v1.X * v1.X + v1.Y * v1.Y);
-        }
-
-        public static void Divide(ref Vector2 value1, float divider, out Vector2 result)
-        {
-            float factor = 1 / divider;
-            result.X = value1.X * factor;
-            result.Y = value1.Y * factor;
-        }
-
-        public static float Dot(Vector2 value1, Vector2 value2)
-        {
-            return value1.X * value2.X + value1.Y * value2.Y;
-        }
-
-        public static void Dot(ref Vector2 value1, ref Vector2 value2, out float result)
-        {
-            result = value1.X * value2.X + value1.Y * value2.Y;
-        }
-
-        public override bool Equals(object obj)
-        {
-            return (obj is Vector2) ? this == ((Vector2)obj) : false;
-        }
-
-        public bool Equals(Vector2 other)
-        {
-            return this == other;
-        }
-
-        public override int GetHashCode()
-        {
-            return (int)(this.X + this.Y);
-        }
-
-        public float Length()
-        {
-            float result;
-            DistanceSquared(ref this, ref zeroVector, out result);
-            return (float)Math.Sqrt(result);
-        }
-
-        public float LengthSquared()
-        {
-            float result;
-            DistanceSquared(ref this, ref zeroVector, out result);
-            return result;
-        }
-
 
         public static Vector2 Multiply(Vector2 value1, Vector2 value2)
         {
@@ -325,11 +277,6 @@ namespace Boids.Core
             result.Y = -value.Y;
         }
 
-        public void Normalize()
-        {
-            Normalize(ref this, out this);
-        }
-
         public static Vector2 Normalize(Vector2 value)
         {
             Normalize(ref value, out value);
@@ -358,6 +305,145 @@ namespace Boids.Core
             result.Y = value1.Y - value2.Y;
         }
 
+        public static Vector2 Truncate(Vector2 vec, float max_value)
+        {
+            if (vec.Length() > max_value)
+            {
+                return Multiply(Normalize(vec), max_value);
+            }
+
+            return vec;
+        }
+
+        /// <summary>
+        /// Returns float precison distanve between two vectors
+        /// </summary>
+        /// <param name="value1">
+        /// A <see cref="Vector2"/>
+        /// </param>
+        /// <param name="value2">
+        /// A <see cref="Vector2"/>
+        /// </param>
+        /// <returns>
+        /// A <see cref="float"/>
+        /// </returns>
+        public static float Distance(Vector2 value1, Vector2 value2)
+        {
+            float result;
+            DistanceSquared(ref value1, ref value2, out result);
+            return (float)Math.Sqrt(result);
+        }
+
+        public static void Distance(ref Vector2 value1, ref Vector2 value2, out float result)
+        {
+            DistanceSquared(ref value1, ref value2, out result);
+            result = (float)Math.Sqrt(result);
+        }
+
+        public static float DistanceSquared(Vector2 value1, Vector2 value2)
+        {
+            float result;
+            DistanceSquared(ref value1, ref value2, out result);
+            return result;
+        }
+
+        public static void DistanceSquared(ref Vector2 value1, ref Vector2 value2, out float result)
+        {
+            result = ((value1.X - value2.X) * (value1.X - value2.X)) +
+                     ((value1.Y - value2.Y) * (value1.Y - value2.Y));
+        }
+
+        /// <summary>
+        /// Devide first vector with the secund vector
+        /// </summary>
+        /// <param name="value1">
+        /// A <see cref="Vector2"/>
+        /// </param>
+        /// <param name="value2">
+        /// A <see cref="Vector2"/>
+        /// </param>
+        /// <returns>
+        /// A <see cref="Vector2"/>
+        /// </returns>
+        public static Vector2 Divide(Vector2 value1, Vector2 value2)
+        {
+            value1.X /= value2.X;
+            value1.Y /= value2.Y;
+            return value1;
+        }
+
+        public static void Divide(ref Vector2 value1, ref Vector2 value2, out Vector2 result)
+        {
+            result.X = value1.X / value2.X;
+            result.Y = value1.Y / value2.Y;
+        }
+
+        public static Vector2 Divide(Vector2 value1, float divider)
+        {
+            float factor = 1 / divider;
+            value1.X *= factor;
+            value1.Y *= factor;
+            return value1;
+        }
+
+        public static double Length(Vector2 v1)
+        {
+            return Math.Sqrt((v1.X * v1.X) + (v1.Y * v1.Y));
+        }
+
+        public static void Divide(ref Vector2 value1, float divider, out Vector2 result)
+        {
+            float factor = 1 / divider;
+            result.X = value1.X * factor;
+            result.Y = value1.Y * factor;
+        }
+
+        public static float Dot(Vector2 value1, Vector2 value2)
+        {
+            return (value1.X * value2.X) + (value1.Y * value2.Y);
+        }
+
+        public static void Dot(ref Vector2 value1, ref Vector2 value2, out float result)
+        {
+            result = (value1.X * value2.X) + (value1.Y * value2.Y);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return (obj is Vector2) && this == ((Vector2)obj);
+        }
+
+        public bool Equals(Vector2 other)
+        {
+            return this == other;
+        }
+
+        // todo : fix GetHashCode so it doesnt contain non-readonly values
+        public override int GetHashCode()
+        {
+// ReSharper disable NonReadonlyFieldInGetHashCode
+            return (int)(this.X + this.Y);
+// ReSharper restore NonReadonlyFieldInGetHashCode
+        }
+
+        public float Length()
+        {
+            float result;
+            DistanceSquared(ref this, ref zeroVector, out result);
+            return (float)Math.Sqrt(result);
+        }
+
+        public float LengthSquared()
+        {
+            float result;
+            DistanceSquared(ref this, ref zeroVector, out result);
+            return result;
+        }
+
+        public void Normalize()
+        {
+            Normalize(ref this, out this);
+        }
 
         public override string ToString()
         {
@@ -371,109 +457,5 @@ namespace Boids.Core
         }
 
         #endregion Public Methods
-
-        public static Vector2 Truncate(Vector2 vec, float max_value)
-        {
-            if (vec.Length() > max_value)
-            {
-                return Vector2.Multiply(Vector2.Normalize(vec), max_value);
-            }
-            return vec;
-        }
-
-        #region Operators
-
-        public static Vector2 operator -(Vector2 value)
-        {
-            value.X = -value.X;
-            value.Y = -value.Y;
-            return value;
-        }
-
-
-        public static bool operator ==(Vector2 value1, Vector2 value2)
-        {
-            return value1.X == value2.X && value1.Y == value2.Y;
-        }
-
-
-        public static bool operator !=(Vector2 value1, Vector2 value2)
-        {
-            return value1.X != value2.X || value1.Y != value2.Y;
-        }
-
-
-        public static Vector2 operator +(Vector2 value1, Vector2 value2)
-        {
-            value1.X += value2.X;
-            value1.Y += value2.Y;
-            return value1;
-        }
-
-
-        public static Vector2 operator -(Vector2 value1, Vector2 value2)
-        {
-            value1.X -= value2.X;
-            value1.Y -= value2.Y;
-            return value1;
-        }
-
-
-        public static Vector2 operator *(Vector2 value1, Vector2 value2)
-        {
-            value1.X *= value2.X;
-            value1.Y *= value2.Y;
-            return value1;
-        }
-
-
-        public static Vector2 operator *(Vector2 value, float scaleFactor)
-        {
-            value.X *= scaleFactor;
-            value.Y *= scaleFactor;
-            return value;
-        }
-
-
-        public static Vector2 operator *(float scaleFactor, Vector2 value)
-        {
-            value.X *= scaleFactor;
-            value.Y *= scaleFactor;
-            return value;
-        }
-
-
-        public static Vector2 operator /(Vector2 value1, Vector2 value2)
-        {
-            value1.X /= value2.X;
-            value1.Y /= value2.Y;
-            return value1;
-        }
-
-
-        public static Vector2 operator /(Vector2 value1, float divider)
-        {
-            float factor = 1 / divider;
-            value1.X *= factor;
-            value1.Y *= factor;
-            return value1;
-        }
-
-        #endregion Operators
-
-        public bool IsZero
-        {
-            get
-            {
-                if (X == 0 && Y == 0)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-        }
     }
 }

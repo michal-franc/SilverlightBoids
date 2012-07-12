@@ -81,7 +81,7 @@ namespace Boids.Core.WorldLogic
         }
 
 
-        public  void SetGlobalAction(WorldStatus status)
+        public void SetGlobalAction(WorldStatus status)
         {
             foreach (Boid boid in this._boidList)
             {

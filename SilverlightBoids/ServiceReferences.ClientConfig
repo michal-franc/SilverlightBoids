@@ -6,12 +6,19 @@
                     <binaryMessageEncoding />
                     <httpTransport maxReceivedMessageSize="2147483647" maxBufferSize="2147483647" />
                 </binding>
+                <binding name="CustomBinding_RedisDalService">
+                    <binaryMessageEncoding />
+                    <httpTransport maxReceivedMessageSize="2147483647" maxBufferSize="2147483647" />
+                </binding>
             </customBinding>
         </bindings>
         <client>
             <endpoint address="http://localhost:11030/Services/LoggingService.svc"
                 binding="customBinding" bindingConfiguration="CustomBinding_LoggingService"
                 contract="LoggingService.LoggingService" name="CustomBinding_LoggingService" />
+            <endpoint address="http://localhost:11030/Services/RedisDalService.svc"
+                binding="customBinding" bindingConfiguration="CustomBinding_RedisDalService"
+                contract="DalService.RedisDalService" name="CustomBinding_RedisDalService" />
         </client>
     </system.serviceModel>
 </configuration>

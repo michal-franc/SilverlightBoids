@@ -59,6 +59,14 @@
                     FontWeight="Black" Foreground="#FFCE1A1A" Height="24" 
                     HorizontalAlignment="Left" Name="btnFCAS" Width="98" 
                     Click="btnFCAS_Click" />
+                <Button Content="SaveScenario" FontSize="9" FontStretch="Normal" 
+                    FontWeight="Black" Foreground="#FFCE1A1A" Height="24" 
+                    HorizontalAlignment="Left" Name="btnSaveScenario" Width="98" 
+                    Click="btnSaveScenario_Click" />
+                <Button Content="LoadScenario" FontSize="9" FontStretch="Normal" 
+                    FontWeight="Black" Foreground="#FFCE1A1A" Height="24" 
+                    HorizontalAlignment="Left" Name="btnLoadScenario" Width="98" 
+                    Click="btnLoadScenario_Click" />
             </StackPanel>
         </StackPanel>
     </Grid>

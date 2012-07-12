@@ -98,6 +98,11 @@
     <Compile Include="RockObject.xaml.cs">
       <DependentUpon>RockObject.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Service References\DalService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\LoggingService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -145,6 +150,21 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
+    <None Include="Properties\DataSources\Boids.Core.SavedScenario.datasource" />
+    <None Include="Service References\DalService\RedisDalService.wsdl" />
+    <None Include="Service References\DalService\RedisDalService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DalService\RedisDalService1.wsdl" />
+    <None Include="Service References\DalService\RedisDalService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DalService\RedisDalService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DalService\RedisDalService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\LoggingService\LoggingService.disco" />
     <None Include="Service References\LoggingService\configuration91.svcinfo" />
     <None Include="Service References\LoggingService\configuration.svcinfo" />
@@ -152,6 +172,13 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\LoggingService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\DalService\RedisDalService.disco" />
+    <None Include="Service References\DalService\configuration91.svcinfo" />
+    <None Include="Service References\DalService\configuration.svcinfo" />
+    <None Include="Service References\DalService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -175,6 +202,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\DalService\" />
     <WCFMetadataStorage Include="Service References\LoggingService\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />

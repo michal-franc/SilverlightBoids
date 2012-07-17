@@ -26,7 +26,9 @@
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             WCFLogger.Trace("Application Startup");
-            this.RootVisual = new MainPage();
+            Grid root = new Grid();
+            this.RootVisual = root;
+            root.Children.Add(new StartPage()); 
         }
 
         private void Application_Exit(object sender, EventArgs e)

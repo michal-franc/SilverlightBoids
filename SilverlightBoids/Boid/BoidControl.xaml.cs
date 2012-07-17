@@ -41,8 +41,11 @@
 
         public void Redraw()
         {
-            this.SetValue(Canvas.LeftProperty, (double)Boid.Position.X);
-            this.SetValue(Canvas.TopProperty, (double)Boid.Position.Y);
+            if (!this.Position.IsNan)
+            {
+                this.SetValue(Canvas.LeftProperty, (double)Boid.Position.X);
+                this.SetValue(Canvas.TopProperty, (double)Boid.Position.Y);
+            }
         }
     }
 }

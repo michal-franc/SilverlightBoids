@@ -1,0 +1,33 @@
+﻿<navigation:Page x:Class="SilverlightBoids.StartPage" 
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           mc:Ignorable="d"
+           xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+           d:DesignWidth="640" d:DesignHeight="480"
+           Title="StartPage Page">
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*">
+            </RowDefinition>
+            <RowDefinition Height="4*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*"></ColumnDefinition>
+            <ColumnDefinition Width="4*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" >Silverlight Boids</TextBlock>
+        <StackPanel Grid.Row="1" Grid.Column="0">
+            <TextBlock FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center">Predefined Scenarios</TextBlock>
+            <Button Name="btnLoadWander" Click="btnLoadWander_Click">Wander</Button>
+            <Button Name="btnLoadFCAS" Click="btnLoadFCAS_Click">FCAS</Button>
+            <Button Name="btnLoadSeparate" Click="btnLoadSeparate_Click">Separate</Button>
+            <Button Name="btnLoadCohesion" Click="btnLoadCohesion_Click">Cohesion</Button>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <TextBlock FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center">Custom Scenario</TextBlock>
+            <Button Name="btnLoadCustom" Click="btnLoadCustom_Click">Custom</Button>
+        </StackPanel>
+    </Grid>
+</navigation:Page>

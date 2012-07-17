@@ -14,6 +14,7 @@
     using System.Windows.Threading;
 
     using Boids.Core;
+    using Boids.Core.BoidAction;
     using Boids.Core.WorldLogic;
 
     using NLog;
@@ -32,7 +33,7 @@
 
         private Point _mousePosition = new Point(0, 0);
 
-        public MainPage()
+        public MainPage(Option option)
         {
             this.InitializeComponent();
 
@@ -51,6 +52,31 @@
 
                         MainCanvas.MouseMove += this.MainPage_MouseMove;
                         once = true;
+
+                        var scenario = new SavedScenario();
+                        scenario.BoidsNumber = 100;
+
+                        switch (option)
+                        {
+                            case Option.Custom:
+                                break;
+                            case Option.Wander:
+                                scenario.WorldStatus = WorldStatus.GlobalWander;
+                                break;
+                            case Option.FCAS:
+                                scenario.WorldStatus = WorldStatus.GlobalFCAS;
+                                break;
+                            case Option.Separater:
+                                scenario.WorldStatus = WorldStatus.GlobalSeparate;
+                                break;
+                            case Option.Cohesion:
+                                scenario.WorldStatus = WorldStatus.GlobalCohesion;
+                                break;
+                            default:
+                                throw new ArgumentOutOfRangeException("option");
+                        }
+
+                        ApplyScenario(scenario);
                     }
                     else
                     {
@@ -58,6 +84,24 @@
                         _world.WorldWidth = MainCanvas.ActualWidth;
                     }
                 };
+        }
+
+        public void ApplyScenario(SavedScenario scenario)
+        {
+            _world.BoidList.Clear();
+
+            _world.WorldStatus = scenario.WorldStatus;
+
+            for (int i = 0; i < scenario.BoidsNumber; i++)
+            {
+                var newBoid = _world.CreateBoid();
+                
+                _world.Map.Children.Add(new BoidControl(newBoid));
+            }
+
+            _world.SetGlobalAction(WorldStatus.GlobalWander);
+            this._world.Go(this._mousePosition);
+            _world.SetGlobalAction(scenario.WorldStatus);
         }
 
         public void TimerCallback(object sender, EventArgs e)

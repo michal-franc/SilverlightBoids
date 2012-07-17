@@ -32,8 +32,19 @@
 
         private void btnAddBoidRandom_Click(object sender, RoutedEventArgs e)
         {
-            var newBoid = World.CreateBoid();
-            World.Map.Children.Add(new BoidControl(newBoid));
+            if (!string.IsNullOrWhiteSpace(txtBoxAddBoidNumber.Text))
+            {
+                var howMany = 0;
+                if (int.TryParse(txtBoxAddBoidNumber.Text, out howMany))
+                {
+                    for (int i = 0; i < howMany; i++)
+                    {
+                        var newBoid = World.CreateBoid();
+                        newBoid.Action = new BoidActionWander();
+                        World.Map.Children.Add(new BoidControl(newBoid));
+                    }
+                }
+            }
         }
 
         void grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -108,46 +119,6 @@
             _globalPath.Add(e.GetPosition(World.Map));
         }
 
-        private void AddColony_Checked(object sender, RoutedEventArgs e)
-        {
-            //World.WorldStatus = WorldStatus.AddingColony;
-            World.Map.MouseLeftButtonDown += this.Map_MouseLeftButtonDown;
-        }
-
-        private void AddColony_Unchecked(object sender, RoutedEventArgs e)
-        {
-            //World.WorldStatus = WorldStatus.None;
-            World.Map.MouseLeftButtonDown -= this.Map_MouseLeftButtonDown;
-        }
-
-        private void Map_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            //World.AddColony(e.GetPosition(World.Map), Logic.Styles.Colors.GetColor());
-        }
-
-        private void AddRockObject_Checked(object sender, RoutedEventArgs e)
-        {
-            //World.WorldStatus = WorldStatus.AddingRockObject;
-            World.Map.MouseLeftButtonDown += this.Map_MouseLeftButtonDown_AddingNewRock;
-        }
-
-        private void AddRockObject_Unchecked(object sender, RoutedEventArgs e)
-        {
-            //World.WorldStatus = WorldStatus.None;
-            World.Map.MouseLeftButtonDown -= this.Map_MouseLeftButtonDown_AddingNewRock;
-        }
-
-        private void Map_MouseLeftButtonDown_AddingNewRock(object sender, MouseButtonEventArgs e)
-        {
-            //World.AddRockObject(e.GetPosition(World.Map));
-        }
-
-        private void btnArrive_Click(object sender, RoutedEventArgs e)
-        {
-            World.WorldStatus = WorldStatus.GlobalArrive;
-            World.SetGlobalAction(World.WorldStatus);
-        }
-
         private void btnSeparate_Click(object sender, RoutedEventArgs e)
         {
             World.WorldStatus = WorldStatus.GlobalSeparate;
@@ -157,12 +128,6 @@
         private void btnCohesion_Click(object sender, RoutedEventArgs e)
         {
             World.WorldStatus = WorldStatus.GlobalCohesion;
-            World.SetGlobalAction(World.WorldStatus);
-        }
-
-        private void btnAligment_Click(object sender, RoutedEventArgs e)
-        {
-            World.WorldStatus = WorldStatus.GlobalAligment;
             World.SetGlobalAction(World.WorldStatus);
         }
 
@@ -203,6 +168,5 @@
                 World.Map.Children.Add(new BoidControl(newBoid));
             }
         }
-
     }
 }

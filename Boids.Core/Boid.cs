@@ -7,6 +7,33 @@ namespace Boids.Core
 
     public class Boid
     {
+        private int mass = (new Random()).Next(20, 80);
+
+        private int maxForce = 20;
+
+        private int maxSpeed = 10;
+
+        public Boid(Vector2 position, int id)
+        {
+            this.Velocity = Vector2.Zero;
+            this.Acceleration = Vector2.Zero;
+            this.SteerForce = Vector2.Zero;
+
+            this.Position = position;
+            this.ID = id;
+            this.Action = new BoidActionWander();
+        }
+
+        public Boid(int id)
+        {
+            this.Velocity = Vector2.Zero;
+            this.Acceleration = Vector2.Zero;
+            this.SteerForce = Vector2.Zero;
+
+            this.ID = id;
+            this.Action = new BoidActionWander();
+        }
+
         public Vector2 Position { get; set; }
 
         public Vector2 Velocity { get; set; }
@@ -16,43 +43,20 @@ namespace Boids.Core
         public Vector2 SteerForce { get; set; }
 
         public int ID { get; private set; }
-        public int _mass = (new Random()).Next(20, 80);
-        public int _maxForce = 20;
-        public int _maxSpeed = 10;
+
         public IBoidAction Action { get; set; }
 
         public int MaxSpeed 
         { 
             get
             {
-                return _maxSpeed;
+                return this.maxSpeed;
             } 
 
             set
             {
-                _maxSpeed = value;
+                this.maxSpeed = value;
             }
-        }
-
-        public Boid(Vector2 position,int id)
-        {
-            Velocity = Vector2.Zero;
-            Acceleration = Vector2.Zero;
-            SteerForce = Vector2.Zero;
-
-            Position = position;
-            this.ID = id;
-            this.Action = new BoidActionWander();
-        }
-
-        public Boid(int id)
-        {
-            Velocity = Vector2.Zero;
-            Acceleration = Vector2.Zero;
-            SteerForce = Vector2.Zero;
-
-            this.ID = id;
-            this.Action = new BoidActionWander();
         }
 
         public void Go(Vector2 dest, World world)
@@ -60,9 +64,9 @@ namespace Boids.Core
             if (Action != null)
             {
                 SteerForce = Action.DoAction(dest, Position, Velocity, MaxSpeed);
-                SteerForce = Vector2.Truncate(SteerForce, _maxForce);
-                Acceleration = SteerForce / _mass;
-                Velocity = Vector2.Truncate(Velocity + Acceleration, _maxSpeed);
+                SteerForce = Vector2.Truncate(SteerForce, this.maxForce);
+                Acceleration = SteerForce / this.mass;
+                Velocity = Vector2.Truncate(Velocity + Acceleration, this.maxSpeed);
 
                 Position = CheckBoundaries(Vector2.Add(Velocity, Position), (int)world.WorldWidth, (int)world.WorldHeight);
             }

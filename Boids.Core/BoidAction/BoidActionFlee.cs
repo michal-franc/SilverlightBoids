@@ -4,7 +4,7 @@ namespace Boids.Core.BoidAction
     {
         public Vector2 DoAction(Vector2 dest, Vector2 location, Vector2 velocity, int maxSpeed)
         {
-            if (Vector2.Length(Vector2.Subtract(dest, location)) > Settings.FleeRadius)
+            if (Vector2.Length(Vector2.Subtract(dest, location)) > SimulationSettings.FleeRadius)
             {
                 return new Vector2(0);
             }

@@ -21,14 +21,14 @@
 
     public partial class MenuControl
     {
-        private IList<Point> _globalPath;
-
-        public World World { get; set; }
-
         public MenuControl()
         {
             InitializeComponent();
         }
+
+        private IList<Point> _globalPath;
+
+        public World World { get; set; }
 
         private void btnAddBoidRandom_Click(object sender, RoutedEventArgs e)
         {

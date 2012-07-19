@@ -17,8 +17,6 @@
     using Boids.Core.BoidAction;
     using Boids.Core.WorldLogic;
 
-    using NLog;
-
     using SilverlightBoids.Boid;
     using SilverlightBoids.Logic;
     using SilverlightBoids.Logic.Styles;
